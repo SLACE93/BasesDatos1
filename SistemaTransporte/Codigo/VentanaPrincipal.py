@@ -1,15 +1,5 @@
-'''
-Created on 09/07/2013
-
-@author: josanvel
-'''
-
 from PyQt4 import QtCore, QtGui
-from Recorridos import Ui_Recorridos
-from Conductor import Ui_Conductor
-from Unidades import Ui_Unidades
-from Consultas import Ui_Consultas
-import sys
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -28,34 +18,43 @@ class Ui_Principal(QtGui.QMainWindow):
     def setupUi(self, Principal):
         Principal.setObjectName(_fromUtf8("Principal"))
         Principal.resize(640, 520)
-        self.centralWidget = QtGui.QWidget(Principal)
-        self.centralWidget.setObjectName(_fromUtf8("centralWidget"))
-        self.brecorridos = QtGui.QPushButton(self.centralWidget)
-        self.brecorridos.setGeometry(QtCore.QRect(70, 140, 220, 170))
-        self.brecorridos.setText(_fromUtf8(""))
+        Principal.setLayoutDirection(QtCore.Qt.LeftToRight)
+        Principal.setAutoFillBackground(False)
+        Principal.setStyleSheet(_fromUtf8("background-color:rgb(219, 219, 255)"))
+        self.centralwidget = QtGui.QWidget(Principal)
+        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.bconsultas = QtGui.QPushButton(self.centralwidget)
+        self.bconsultas.setGeometry(QtCore.QRect(50, 350, 500, 50))
+        self.bconsultas.setText(_fromUtf8(""))
+        '''
+        QPixmap pixmap("image_path");
+        QIcon ButtonIcon(QQPixmap(""));
+        button->setIcon(ButtonIcon);
+        button->setIconSize(pixmap.rect().size());
+        '''        
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../Descargas/IMAGENES/recorrido.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.brecorridos.setIcon(icon)
-        self.brecorridos.setIconSize(QtCore.QSize(300, 161))
-        self.brecorridos.setObjectName(_fromUtf8("brecorridos"))
-        self.bconductores = QtGui.QPushButton(self.centralWidget)
-        self.bconductores.setGeometry(QtCore.QRect(320, 140, 240, 70))
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("imagenes/bconsultas.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bconsultas.setIcon(icon)
+        self.bconsultas.setIconSize(QtCore.QSize(521, 100))
+        self.bconsultas.setObjectName(_fromUtf8("bconsultas"))
+        self.bconductores = QtGui.QPushButton(self.centralwidget)
+        self.bconductores.setGeometry(QtCore.QRect(310, 160, 240, 70))
         self.bconductores.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("../../Descargas/IMAGENES/conductor.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("imagenes/bconductor.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.bconductores.setIcon(icon1)
         self.bconductores.setIconSize(QtCore.QSize(301, 100))
         self.bconductores.setObjectName(_fromUtf8("bconductores"))
-        self.bconsultas = QtGui.QPushButton(self.centralWidget)
-        self.bconsultas.setGeometry(QtCore.QRect(70, 340, 490, 50))
-        self.bconsultas.setText(_fromUtf8(""))
+        self.brecorridos = QtGui.QPushButton(self.centralwidget)
+        self.brecorridos.setGeometry(QtCore.QRect(60, 160, 200, 160))
+        self.brecorridos.setText(_fromUtf8(""))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("../../Descargas/IMAGENES/consultas.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.bconsultas.setIcon(icon2)
-        self.bconsultas.setIconSize(QtCore.QSize(521, 100))
-        self.bconsultas.setObjectName(_fromUtf8("bconsultas"))
-        self.label = QtGui.QLabel(self.centralWidget)
-        self.label.setGeometry(QtCore.QRect(10, 40, 581, 31))
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("../../Descargas/IMAGENES/recorrido.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.brecorridos.setIcon(icon2)
+        self.brecorridos.setIconSize(QtCore.QSize(300, 161))
+        self.brecorridos.setObjectName(_fromUtf8("brecorridos"))
+        self.label = QtGui.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(20, 70, 581, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("DejaVu Serif"))
         font.setPointSize(20)
@@ -65,63 +64,30 @@ class Ui_Principal(QtGui.QMainWindow):
         self.label.setFont(font)
         self.label.setStyleSheet(_fromUtf8("background-font: rgb(255, 255, 255);"))
         self.label.setObjectName(_fromUtf8("label"))
-        self.bunidades = QtGui.QPushButton(self.centralWidget)
-        self.bunidades.setGeometry(QtCore.QRect(320, 240, 240, 70))
+        self.bunidades = QtGui.QPushButton(self.centralwidget)
+        self.bunidades.setGeometry(QtCore.QRect(310, 250, 240, 70))
         self.bunidades.setText(_fromUtf8(""))
-        self.bunidades.setIcon(icon1)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("../../Descargas/IMAGENES/unidades.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bunidades.setIcon(icon3)
         self.bunidades.setIconSize(QtCore.QSize(301, 100))
         self.bunidades.setObjectName(_fromUtf8("bunidades"))
-        Principal.setCentralWidget(self.centralWidget)
-        self.menuBar = QtGui.QMenuBar(Principal)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 640, 25))
-        self.menuBar.setObjectName(_fromUtf8("menuBar"))
-        Principal.setMenuBar(self.menuBar)
-        self.mainToolBar = QtGui.QToolBar(Principal)
-        self.mainToolBar.setObjectName(_fromUtf8("mainToolBar"))
-        Principal.addToolBar(QtCore.Qt.TopToolBarArea, self.mainToolBar)
-        self.statusBar = QtGui.QStatusBar(Principal)
-        self.statusBar.setObjectName(_fromUtf8("statusBar"))
-        Principal.setStatusBar(self.statusBar)
+        Principal.setCentralWidget(self.centralwidget)
+        self.menubar = QtGui.QMenuBar(Principal)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 25))
+        self.menubar.setObjectName(_fromUtf8("menubar"))
+        Principal.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(Principal)
+        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        Principal.setStatusBar(self.statusbar)
 
         self.retranslateUi(Principal)
         QtCore.QMetaObject.connectSlotsByName(Principal)
-        self.connect(self.brecorridos, QtCore.SIGNAL("clicked()"), self.abrirRecorrido)
-        self.connect(self.bconductores, QtCore.SIGNAL("clicked()"), self.abrirConductor)
-        self.connect(self.bunidades, QtCore.SIGNAL("clicked()"), self.abrirUnidades)
-        self.connect(self.bconsultas, QtCore.SIGNAL("clicked()"), self.abrirConsultas)
-        
+
     def retranslateUi(self, Principal):
         Principal.setWindowTitle(_translate("Principal", "Principal", None))
         self.label.setText(_translate("Principal", "SISTEMA DE CONTROL TRANSESPOL", None))
-            
-    def abrirRecorrido(self):
-        Recorridos = QtGui.QWidget()
-        uiR = Ui_Recorridos()
-        uiR.setupUi(Recorridos)
-        Recorridos.show()
-        uiR.exec_()
-        
-    def abrirConductor(self):
-        self.close()
-        Conductor = QtGui.QWidget()
-        uiC = Ui_Conductor()
-        uiC.setupUi(Conductor)
-        Conductor.show()
-        uiC.exec_()
-
-    def abrirUnidades(self):
-        self.close()
-        Unidades = QtGui.QWidget()
-        uiU = Ui_Unidades()
-        uiU.setupUi(Unidades)
-        Unidades.show()
-        uiU.exec_()
-        
-    def abrirConsultas(self):
-        self.close()
-        Consultas = QtGui.QWidget()
-        uiC = Ui_Consultas()
-        uiC.setupUi(Consultas)
-        Consultas.show()
-        uiC.exec_()
-        
+        self.brecorridos.setText(_translate("Principal", "RECORRIDOS", None))
+        self.bunidades.setText(_translate("Principal", "UNIDADES", None))
+        self.bconductores.setText(_translate("Principal", "CONDUCTORES", None))
+        self.bconsultas.setText(_translate("Principal", "CONSULTAS", None))
