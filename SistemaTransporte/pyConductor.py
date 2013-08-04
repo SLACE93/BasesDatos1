@@ -7,14 +7,29 @@ from PyQt4 import QtCore, QtGui, QtSql
 from Conductor import Ui_Conductor
 import exceptions
 
+
 class MyformConductor(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.uiCond = Ui_Conductor()
         self.uiCond.setupUi(self)
+        self.setearBotones()
         
         self.connect(self.uiCond.bRegresarConductores, QtCore.SIGNAL("clicked()"),self.regresarConductor)
         self.connect(self.uiCond.bingresarConductores, QtCore.SIGNAL("clicked()"),self.ingresarConductor)
+
+
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconIng = QtGui.QIcon()
+        
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiCond.bRegresarConductores.setIcon(iconReg)
+        self.uiCond.bRegresarConductores.setIconSize(QtCore.QSize(240, 50))
+        
+        iconIng.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiCond.bingresarConductores.setIcon(iconIng)
+        self.uiCond.bingresarConductores.setIconSize(QtCore.QSize(240, 50))
         
     def regresarVentanaCond(self, ventanaAtras):
         self.ventana = ventanaAtras

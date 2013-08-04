@@ -77,10 +77,8 @@ class Ui_RecorridoConductor(object):
         QtCore.QMetaObject.connectSlotsByName(RecorridoConductor)
 
     def retranslateUi(self, RecorridoConductor):
-        RecorridoConductor.setWindowTitle(_translate("RecorridoConductor", "Form", None))
+        RecorridoConductor.setWindowTitle(_translate("RecorridoConductor", "Recorrido Conductor", None))
         self.lfechaFinalRC.setText(_translate("RecorridoConductor", "FECHA FINAL", None))
         self.lIDConductorRC.setText(_translate("RecorridoConductor", "ID CONDUCTOR", None))
         self.lfechaInicialRC.setText(_translate("RecorridoConductor", " FECHA INICIAL", None))
         self.TitleRecorridoConductor.setText(_translate("RecorridoConductor", "RECORRIDOS POR CONDUCTOR", None))
-        self.bRegresarConductor.setText(_translate("RecorridoConductor", "REGRESAR", None))
-        self.bConsultarConductor.setText(_translate("RecorridoConductor", "CONSULTAR", None))

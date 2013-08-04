@@ -12,9 +12,22 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiRU = Ui_RecorridoUnidad()
         self.uiRU.setupUi(self)
+        self.setearBotones()
 
         self.connect(self.uiRU.bRegresarRUnidad, QtCore.SIGNAL("clicked()"), self.regresarUnidad)
         self.connect(self.uiRU.bConsultarRUnidad, QtCore.SIGNAL("clicked()"), self.consultarUnidad)
+
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconCons = QtGui.QIcon()
+        
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRU.bRegresarRUnidad.setIcon(iconReg)
+        self.uiRU.bRegresarRUnidad.setIconSize(QtCore.QSize(240, 50))
+        
+        iconCons.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRU.bConsultarRUnidad.setIcon(iconCons)
+        self.uiRU.bConsultarRUnidad.setIconSize(QtCore.QSize(240, 50))
         
     def regresarVentanaU(self, ventana):
         self.principal = ventana
@@ -31,8 +44,7 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
             '''else: ingreso a la base '''
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
-    
-        
+     
     def toInt(self,num):
         try:
             return int(num)

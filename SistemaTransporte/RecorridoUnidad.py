@@ -75,10 +75,8 @@ class Ui_RecorridoUnidad(object):
         QtCore.QMetaObject.connectSlotsByName(RecorridoUnidad)
 
     def retranslateUi(self, RecorridoUnidad):
-        RecorridoUnidad.setWindowTitle(_translate("RecorridoUnidad", "Form", None))
+        RecorridoUnidad.setWindowTitle(_translate("RecorridoUnidad", "Recorrido Unidad", None))
         self.TitleRecorridoUnidad.setText(_translate("RecorridoUnidad", "RECORRIDOS POR UNIDAD", None))
         self.lIDUnidad.setText(_translate("RecorridoUnidad", "ID UNIDAD", None))
         self.lFechaF.setText(_translate("RecorridoUnidad", "FECHA FINAL", None))
-        self.bConsultarRUnidad.setText(_translate("RecorridoUnidad", "CONSULTAR", None))
         self.lFechaI.setText(_translate("RecorridoUnidad", " FECHA INICIAL", None))
-        self.bRegresarRUnidad.setText(_translate("RecorridoUnidad", "REGRESAR", None))

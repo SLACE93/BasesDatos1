@@ -49,8 +49,4 @@ class Ui_Consultas(QtGui.QMainWindow):
     def retranslateUi(self, Consultas):
         Consultas.setWindowTitle(_translate("Consultas", "Consultas", None))
         self.labelConsultas.setText(_translate("Consultas", "CONSULTAS", None))
-        self.bRecorridoFecha.setText(_translate("Consultas", "RECORRIDOS POR FECHA", None))
-        self.bRecorridoConductor.setText(_translate("Consultas", "RECORRIDOS POR CONDUCTOR", None))
-        self.RecorridoUnidad.setText(_translate("Consultas", "RECORRIDOS POR UNIDAD", None))
-        self.bRecorridoHoras.setText(_translate("Consultas", "RECORRIDOS POR HORAS", None))
-        self.bRegresar.setText(_translate("Consultas", "REGRESAR", None))
+        

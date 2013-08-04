@@ -16,7 +16,7 @@ except AttributeError:
 
 class Ui_RecorridoFecha(object):
     def setupUi(self, Form):
-        Form.setObjectName(_fromUtf8("Form"))
+        Form.setObjectName(_fromUtf8("RecorridoFecha"))
         Form.resize(640, 516)
         self.TitleRFecha = QtGui.QLabel(Form)
         self.TitleRFecha.setGeometry(QtCore.QRect(170, 20, 321, 31))
@@ -63,9 +63,7 @@ class Ui_RecorridoFecha(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "Form", None))
-        self.TitleRFecha.setText(_translate("Form", "RECORRIDOS POR FECHA", None))
-        self.lFechaI.setText(_translate("Form", "FECHA INICIAL", None))
-        self.lFechaF.setText(_translate("Form", "FECHA FINAL", None))
-        self.bRegresarRFecha.setText(_translate("Form", "REGRESAR", None))
-        self.bConsultarRFecha.setText(_translate("Form", "CONSULTAR", None))
+        Form.setWindowTitle(_translate("RecorridoFecha", "Recorrido Fecha", None))
+        self.TitleRFecha.setText(_translate("RecorridoFecha", "RECORRIDOS POR FECHA", None))
+        self.lFechaI.setText(_translate("RecorridoFecha", "FECHA INICIAL", None))
+        self.lFechaF.setText(_translate("RecorridoFecha", "FECHA FINAL", None))

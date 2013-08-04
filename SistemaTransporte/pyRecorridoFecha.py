@@ -12,16 +12,26 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiRF = Ui_RecorridoFecha()
         self.uiRF.setupUi(self)
+        self.setearBotones()
         #self.setCentralWidget(self.uiRF.tableViewRF)
         
         self.connect(self.uiRF.bRegresarRFecha, QtCore.SIGNAL("clicked()"), self.regresarFecha)
-        self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultarFecha)
-        
-                     
-    
-    def consultarFecha(self):
+        #self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultarFecha)
         
 
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconIng = QtGui.QIcon()
+        
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRF.bRegresarRFecha.setIcon(iconReg)
+        self.uiRF.bRegresarRFecha.setIconSize(QtCore.QSize(240, 50))
+        
+        iconIng.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRF.bConsultarRFecha.setIcon(iconIng)
+        self.uiRF.bConsultarRFecha.setIconSize(QtCore.QSize(240, 50))            
+    
+    def consultarFecha(self):
         db = QSqlDatabase("QMYSQL");
         db.setUserName("root")
         db.setPassword("Joselito91")

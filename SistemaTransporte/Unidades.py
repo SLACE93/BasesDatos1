@@ -104,5 +104,3 @@ class Ui_Unidades(object):
         self.lMatricula.setText(_translate("Unidades", "MATRICULA", None))
         self.lCapacidad.setText(_translate("Unidades", "CAPACIDAD", None))
         self.lAnoFabricacion.setText(_translate("Unidades", "AÑO FABRICACION", None))
-        self.bingresarUnidades.setText(_translate("Unidades", "INGRESAR", None))
-        self.bRegresarUnidades.setText(_translate("Unidades", "REGRESAR", None))

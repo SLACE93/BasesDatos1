@@ -4,6 +4,8 @@ Created on 27/07/2013
 @author: josanvel
 '''
 
+
+
 from PyQt4 import QtCore, QtGui, QtSql
 from Recorridos import Ui_Recorridos
 import exceptions
@@ -13,8 +15,23 @@ class MyformRecorridos(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiR = Ui_Recorridos()
         self.uiR.setupUi(self)
+        self.setearBotones()
+        
         self.connect(self.uiR.bRegresarRecorridos, QtCore.SIGNAL("clicked()"), self.regresarRecorrido)
         self.connect(self.uiR.bingresarRecorridos, QtCore.SIGNAL("clicked()"), self.ingresarRecorrido)
+        
+
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconIng = QtGui.QIcon()
+        
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiR.bRegresarRecorridos.setIcon(iconReg)
+        self.uiR.bRegresarRecorridos.setIconSize(QtCore.QSize(240, 50))
+        
+        iconIng.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiR.bingresarRecorridos.setIcon(iconIng)
+        self.uiR.bingresarRecorridos.setIconSize(QtCore.QSize(240, 50))
         
     def regresarVentanaR(self,ventanaAtras):
         self.ventana = ventanaAtras

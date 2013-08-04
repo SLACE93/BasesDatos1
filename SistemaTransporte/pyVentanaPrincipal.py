@@ -48,7 +48,7 @@ class pyVentanaP(QtGui.QMainWindow):
         self.consultas.regresarVentanaCons(self)
         self.consultas.show()
         
-    def IniciarBase(self):        
+    def IniciarBase(self):
         self.db = QtSql.QSqlDatabase.addDatabase("QMYSQL")
         self.db.setUserName("root");
         self.db.setPassword("Joselito91");

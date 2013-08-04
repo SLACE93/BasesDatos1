@@ -13,10 +13,25 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiRCond = Ui_RecorridoConductor()
         self.uiRCond.setupUi(self)
+        self.setearBotones()
         
         self.connect(self.uiRCond.bRegresarConductor, QtCore.SIGNAL("clicked()"), self.regresarConductor)
         self.connect(self.uiRCond.bConsultarConductor, QtCore.SIGNAL("clicked()"), self.consultarRecorridoCond)
+
+
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconIng = QtGui.QIcon()
         
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRCond.bRegresarConductor.setIcon(iconReg)
+        self.uiRCond.bRegresarConductor.setIconSize(QtCore.QSize(240, 50))
+        
+        iconIng.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiRCond.bConsultarConductor.setIcon(iconIng)
+        self.uiRCond.bConsultarConductor.setIconSize(QtCore.QSize(240, 50))
+        
+
     def regresarVentana(self, ventana):
         self.principal = ventana
         

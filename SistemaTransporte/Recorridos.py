@@ -148,6 +148,4 @@ class Ui_Recorridos(QtGui.QMainWindow):
         self.comboBEstLlegada.setItemText(4, _translate("Recorridos", "ORQUIDEAS", None))
         self.comboBEstLlegada.setItemText(5, _translate("Recorridos", "DURAN", None))
         self.lRecorridos.setText(_translate("Recorridos", "RECORRIDOS", None))
-        self.bingresarRecorridos.setText(_translate("Recorridos", "INGRESAR", None))
-        self.bRegresarRecorridos.setText(_translate("Recorridos", "REGRESAR", None))
 

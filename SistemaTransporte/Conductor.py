@@ -95,5 +95,3 @@ class Ui_Conductor(object):
         self.lNLicencia.setText(_translate("Conductor", "N.LICENCIA", None))
         self.lNombre.setText(_translate("Conductor", "NOMBRE", None))
         self.titleConductores.setText(_translate("Conductor", "CONDUCTORES", None))
-        self.bRegresarConductores.setText(_translate("Conductor", "REGRESAR", None))
-        self.bingresarConductores.setText(_translate("Conductor", "INGRESAR", None))

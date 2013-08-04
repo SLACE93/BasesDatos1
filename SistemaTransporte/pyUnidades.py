@@ -12,9 +12,23 @@ class MyformUnidades(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiU = Ui_Unidades()
         self.uiU.setupUi(self)
+        self.setearBotones()
         
         self.connect(self.uiU.bRegresarUnidades, QtCore.SIGNAL("clicked()"), self.regresarUnidades)
         self.connect(self.uiU.bingresarUnidades, QtCore.SIGNAL("clicked()"), self.ingresarUnidades)
+        
+
+    def setearBotones(self):
+        iconReg = QtGui.QIcon()
+        iconIng = QtGui.QIcon()
+        
+        iconReg.addPixmap(QtGui.QPixmap(("imagenes/bregresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiU.bRegresarUnidades.setIcon(iconReg)
+        self.uiU.bRegresarUnidades.setIconSize(QtCore.QSize(240, 50))
+        
+        iconIng.addPixmap(QtGui.QPixmap(("imagenes/bingresar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.uiU.bingresarUnidades.setIcon(iconIng)
+        self.uiU.bingresarUnidades.setIconSize(QtCore.QSize(240, 50))
         
     def regresarVentanaU(self, ventanaAtras):
         self.ventanaPrincipal = ventanaAtras

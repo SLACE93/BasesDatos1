@@ -114,7 +114,7 @@ class Ui_RecorridoHoras(object):
         QtCore.QMetaObject.connectSlotsByName(RecorridoHoras)
 
     def retranslateUi(self, RecorridoHoras):
-        RecorridoHoras.setWindowTitle(_translate("RecorridoHoras", "Form", None))
+        RecorridoHoras.setWindowTitle(_translate("RecorridoHoras", "Recorrido Hora", None))
         self.lFechaRH.setText(_translate("RecorridoHoras", " FECHA", None))
         self.lEstacionLLRH.setText(_translate("RecorridoHoras", "ESTACION LLEGADA", None))
         self.cbEstacionSRH.setItemText(0, _translate("RecorridoHoras", "PISCINA OLIMPICA", None))
@@ -133,5 +133,3 @@ class Ui_RecorridoHoras(object):
         self.cbEstacionLLRH.setItemText(4, _translate("RecorridoHoras", "ORQUIDEAS", None))
         self.cbEstacionLLRH.setItemText(5, _translate("RecorridoHoras", "DURAN", None))
         self.lHoraInicialRH.setText(_translate("RecorridoHoras", "HORA INICIAL", None))
-        self.bRegresarHoras.setText(_translate("RecorridoHoras", "REGRESAR", None))
-        self.bConsultarHoras.setText(_translate("RecorridoHoras", "CONSULTAR", None))
