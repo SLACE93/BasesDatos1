@@ -4,7 +4,7 @@ Created on 27/07/2013
 @author: josanvel
 '''
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from Recorridos import Ui_Recorridos
 import exceptions
 
@@ -24,23 +24,63 @@ class MyformRecorridos(QtGui.QMainWindow):
         self.ventana.show()
     
     def ingresarRecorrido(self):
-        self.numPasajeros = self.uiR.lineEPasajeros.displayText()
-        self.idCond = self.uiR.lineEIDConductor.displayText()
-        self.idUni = self.uiR.lineEIDUnidad.displayText()
-        if self.uiR.lineEIDConductor.displayText()!='' and self.uiR.lineEIDUnidad.displayText()!='' and self.uiR.lineEPasajeros!='':    
-            if self.toInt(self.idCond) == None:
+        numPas = self.uiR.lineEPasajeros.displayText()
+        idCon = self.uiR.lineEIDConductor.displayText()
+        idUni = self.uiR.lineEIDUnidad.displayText()
+
+        if idCon != '' and idUni != '' and numPas != '':    
+            if self.toInt(idCon) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo ID Conductor')
-            elif self.toInt(self.idUni) == None:
+                self.uiR.lineEIDConductor.setText("")
+                
+            elif self.toInt(idUni) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo ID Unidad')
-            elif self.toInt(self.numPasajeros) == None:
+                self.uiR.lineEIDUnidad.setText("")
+                
+            elif self.toInt(numPas) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de num Pasajeros')
-            '''else: ingreso a la base '''
-    
+                self.uiR.lineEPasajeros.setText("")
                 
-                
+            else: 
+                self.IngresarOperacion()
+                self.hide()
+                self.ventana.show()    
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
             
+
+    def IngresarOperacion(self):
+        idRecorrido = None
+        fecha = QtCore.QDate.currentDate()
+        NoPasaj = self.toInt(self.uiR.lineEPasajeros.displayText())
+        horaS = self.uiR.timeEHoraS.time()
+        horaLl = self.uiR.timeEHoraLl.time()
+        
+        idEstS = self.uiR.comboBEstSalida.currentText()
+        idEstLl = self.uiR.comboBEstLlegada.currentText()
+        idUsuario = self.toInt(1)
+        
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+            
+        query = QtSql.QSqlQuery()
+        query.prepare("""INSERT INTO Recorrido (IdRecorrido, Fecha, NoPasajeros, Hora_Salida, Hora_Llegada, IdEstacion_Salida, IdEstacion_Llegada, IdUsuario) VALUES(?,?,?,?,?,?,?,?)""")
+
+        query.addBindValue(idRecorrido)
+        query.addBindValue(fecha)
+        query.addBindValue(NoPasaj)
+        query.addBindValue(horaS)
+        query.addBindValue(horaLl)
+        query.addBindValue(idUsuario)
+        query.addBindValue(idUsuario)
+        query.addBindValue(idUsuario)
+                
+        if not query.exec_():
+            QtGui.QMessageBox.warning( None, "Error al crear un Recorrido",\
+                                          "No se pudo INSERTAR a un nuevo Recorrido" ) 
+        else:
+            QtGui.QMessageBox.information(self, "INFORMACION","Ah ingresado un  nuevo Recorrido")
             
     def toInt(self,num):
         try:

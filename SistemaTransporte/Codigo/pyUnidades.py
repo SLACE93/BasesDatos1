@@ -3,9 +3,10 @@ Created on 27/07/2013
 
 @author: josanvel
 '''
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from Unidades import Ui_Unidades
 import exceptions
+
 class MyformUnidades(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -16,28 +17,66 @@ class MyformUnidades(QtGui.QMainWindow):
         self.connect(self.uiU.bingresarUnidades, QtCore.SIGNAL("clicked()"), self.ingresarUnidades)
         
     def regresarVentanaU(self, ventanaAtras):
-        self.principal = ventanaAtras
+        self.ventanaPrincipal = ventanaAtras
         
     def regresarUnidades(self):
         self.hide()
-        self.principal.show()
+        self.ventanaPrincipal.show()
     
     def ingresarUnidades(self):
-        self.matricula = self.uiU.lineEMatricula.displayText()
-        self.capacidad = self.uiU.lineECapacidad.displayText()
-        self.anoF  = self.uiU.lineEAnoFab.displayText()
-        if self.matricula!='' and self.capacidad!='' and self.anoF!='':    
-            if self.valMatricula(self.matricula) == False:
+        matricula = self.uiU.lineEMatricula.displayText()
+        capacidad = self.uiU.lineECapacidad.displayText()
+        anoF  = self.uiU.lineEAnoFab.displayText()
+        
+        if matricula != '' and capacidad != '' and anoF != '':    
+            if self.valMatricula(matricula) == False:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de matricula incorrecto')
-            elif self.toInt(self.capacidad)==None:  
+                self.uiU.lineEMatricula.setText("")
+                
+            elif self.toInt(capacidad) == None:  
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','El campo capacidad solo admite enteros')
-            elif self.toInt(self.anoF)==None:
+                self.uiU.lineECapacidad.setText("")
+                
+            elif self.toInt(anoF) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','El campo anio fabricacion solo admite enteros')
-            '''else: ingreso a la base '''
+                self.uiU.lineEAnoFab.setText("")
+            else:
+                self.IngresarOperacion()
+                self.hide()
+                self.ventanaPrincipal.show()
+                
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+
+    def IngresarOperacion(self):
+        matricula = self.uiU.lineEMatricula.displayText()
+        capacidad = self.toInt(self.uiU.lineECapacidad.displayText())
+        anoFab = self.uiU.lineEAnoFab.displayText()
+        fechaAd = "10/12/1999"
+        
+        iduser = self.toInt(1)
+        idUnidad = None
+  
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
             
-            
+        query = QtSql.QSqlQuery()
+        query.prepare("""INSERT INTO Unidad (idUnidad, Matricula, Capacidad, Anio_Fab, Fecha_Adquisicion, IdUsuario) VALUES(?,?,?,?,?,?)""")
+
+        query.addBindValue(idUnidad)
+        query.addBindValue(matricula)
+        query.addBindValue(capacidad)
+        query.addBindValue(anoFab)
+        query.addBindValue(fechaAd)
+        query.addBindValue(iduser)
+                
+        if not query.exec_():
+            QtGui.QMessageBox.warning( None, "Error al crear una Unidad",\
+                                          "No se pudo INSERTAR una Unidad" ) 
+        else:
+            QtGui.QMessageBox.information(self, "INFORMACION","Ah ingresado una  nueva Unidad")  
+    
     def toInt(self,num):
         try:
             return int(num)
