@@ -20,6 +20,7 @@ class Ui_Consultas(QtGui.QMainWindow):
         Consultas.resize(640, 515)
         Consultas.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.labelConsultas = QtGui.QLabel(Consultas)
+        self.labelConsultas.setStyleSheet("background-image: url()")
         self.labelConsultas.setGeometry(QtCore.QRect(250, 40, 151, 20))
         font = QtGui.QFont()
         font.setPointSize(20)

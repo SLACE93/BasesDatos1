@@ -55,6 +55,7 @@ class Ui_Principal(QtGui.QMainWindow):
         self.brecorridos.setIconSize(QtCore.QSize(300, 161))
         self.brecorridos.setObjectName(_fromUtf8("brecorridos"))
         self.label = QtGui.QLabel(self.centralwidget)
+        self.label.setStyleSheet("background-image: url()")
         self.label.setGeometry(QtCore.QRect(20, 70, 581, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("DejaVu Serif"))
@@ -89,3 +90,4 @@ class Ui_Principal(QtGui.QMainWindow):
     def retranslateUi(self, Principal):
         Principal.setWindowTitle(_translate("Principal", "Principal", None))
         self.label.setText(_translate("Principal", "SISTEMA DE CONTROL TRANSESPOL", None))
+        self.label.setStyleSheet("background-image: url()")
