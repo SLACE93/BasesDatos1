@@ -53,6 +53,7 @@ class Ui_RecorridoConductor(object):
         self.lfechaInicialRC.setFont(font)
         self.lfechaInicialRC.setObjectName(_fromUtf8("lfechaInicialRC"))
         self.fechaFinalRC = QtGui.QDateEdit(RecorridoConductor)
+        self.fechaFinalRC.setDisplayFormat("dd/MM/yyyy")
         self.fechaFinalRC.setGeometry(QtCore.QRect(320, 120, 151, 27))
         self.fechaFinalRC.setObjectName(_fromUtf8("fechaFinalRC"))
         self.TitleRecorridoConductor = QtGui.QLabel(RecorridoConductor)

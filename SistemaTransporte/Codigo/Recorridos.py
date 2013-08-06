@@ -19,6 +19,7 @@ class Ui_Recorridos(QtGui.QMainWindow):
         Recorridos.setObjectName(_fromUtf8("Recorridos"))
         Recorridos.resize(640, 520)
         Recorridos.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
+        
         self.timeEHoraS = QtGui.QTimeEdit(Recorridos)
         self.timeEHoraS.setGeometry(QtCore.QRect(140, 380, 151, 27))
         self.timeEHoraS.setObjectName(_fromUtf8("timeEHoraS"))

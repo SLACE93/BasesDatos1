@@ -14,10 +14,9 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         self.uiRCond = Ui_RecorridoConductor()
         self.uiRCond.setupUi(self)
         self.setearBotones()
-        
+
         self.connect(self.uiRCond.bRegresarConductor, QtCore.SIGNAL("clicked()"), self.regresarConductor)
         self.connect(self.uiRCond.bConsultarConductor, QtCore.SIGNAL("clicked()"), self.consultarRecorridoCond)
-
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -31,7 +30,6 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         self.uiRCond.bConsultarConductor.setIcon(iconIng)
         self.uiRCond.bConsultarConductor.setIconSize(QtCore.QSize(240, 50))
         
-
     def regresarVentana(self, ventana):
         self.principal = ventana
         
@@ -47,8 +45,7 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
             '''else: ingreso a la base '''
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
-    
-        
+              
     def toInt(self,num):
         try:
             return int(num)

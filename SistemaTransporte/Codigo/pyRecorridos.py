@@ -3,9 +3,6 @@ Created on 27/07/2013
 
 @author: josanvel
 '''
-
-
-
 from PyQt4 import QtCore, QtGui, QtSql
 from Recorridos import Ui_Recorridos
 import exceptions
@@ -19,7 +16,6 @@ class MyformRecorridos(QtGui.QMainWindow):
         
         self.connect(self.uiR.bRegresarRecorridos, QtCore.SIGNAL("clicked()"), self.regresarRecorrido)
         self.connect(self.uiR.bingresarRecorridos, QtCore.SIGNAL("clicked()"), self.ingresarRecorrido)
-        
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -65,39 +61,44 @@ class MyformRecorridos(QtGui.QMainWindow):
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
             
-
     def IngresarOperacion(self):
-        idRecorrido = None
+        idRecorrido = self.toInt(1)
+        idConductor = self.toInt(1)
+        idUnidad = self.toInt(1)
+        
         fecha = QtCore.QDate.currentDate()
         NoPasaj = self.toInt(self.uiR.lineEPasajeros.displayText())
         horaS = self.uiR.timeEHoraS.time()
         horaLl = self.uiR.timeEHoraLl.time()
         
-        idEstS = self.uiR.comboBEstSalida.currentText()
-        idEstLl = self.uiR.comboBEstLlegada.currentText()
-        idUsuario = self.toInt(1)
+        #idEstS = self.uiR.comboBEstSalida.currentText()
+        #idEstLl = self.uiR.comboBEstLlegada.currentText()
+        
+        idES = self.toInt(1)
+        idEL = self.toInt(2)
         
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
                 print 'No se pudo abrir la BASES DE DATOS'
-            
+        
         query = QtSql.QSqlQuery()
-        query.prepare("""INSERT INTO Recorrido (IdRecorrido, Fecha, NoPasajeros, Hora_Salida, Hora_Llegada, IdEstacion_Salida, IdEstacion_Llegada, IdUsuario) VALUES(?,?,?,?,?,?,?,?)""")
+        query.prepare("call PRInsertRecorrido(?,?,?,?,?,?,?,?,?)")
 
         query.addBindValue(idRecorrido)
         query.addBindValue(fecha)
+        query.addBindValue(idConductor)
+        query.addBindValue(idUnidad)
         query.addBindValue(NoPasaj)
         query.addBindValue(horaS)
         query.addBindValue(horaLl)
-        query.addBindValue(idUsuario)
-        query.addBindValue(idUsuario)
-        query.addBindValue(idUsuario)
+        query.addBindValue(idES)
+        query.addBindValue(idEL)
                 
         if not query.exec_():
             QtGui.QMessageBox.warning( None, "Error al crear un Recorrido",\
                                           "No se pudo INSERTAR a un nuevo Recorrido" ) 
         else:
-            QtGui.QMessageBox.information(self, "INFORMACION","Ah ingresado un  nuevo Recorrido")
+            QtGui.QMessageBox.information(None, "INFORMACION","Ah ingresado un  nuevo Recorrido")
             
     def toInt(self,num):
         try:

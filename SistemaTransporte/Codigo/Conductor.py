@@ -82,6 +82,7 @@ class Ui_Conductor(object):
         self.lineEIDCedula.setGeometry(QtCore.QRect(280, 130, 281, 31))
         self.lineEIDCedula.setObjectName(_fromUtf8("lineEIDCedula"))
         self.dEditFNac = QtGui.QDateEdit(Conductor)
+        self.dEditFNac.setDisplayFormat("dd/MM/yyyy")
         self.dEditFNac.setGeometry(QtCore.QRect(410, 340, 151, 27))
         self.dEditFNac.setObjectName(_fromUtf8("dEditFNac"))
         self.bRegresarConductores = QtGui.QPushButton(Conductor)

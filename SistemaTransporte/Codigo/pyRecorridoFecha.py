@@ -3,9 +3,8 @@ Created on 27/07/2013
 
 @author: josanvel
 '''
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from RecorridoFecha import Ui_RecorridoFecha
-from PyQt4.QtSql import *
 
 class MyformRecorridoFecha(QtGui.QMainWindow):
     def __init__(self, parent=None):
@@ -13,11 +12,10 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         self.uiRF = Ui_RecorridoFecha()
         self.uiRF.setupUi(self)
         self.setearBotones()
-        #self.setCentralWidget(self.uiRF.tableViewRF)
+        
         
         self.connect(self.uiRF.bRegresarRFecha, QtCore.SIGNAL("clicked()"), self.regresarFecha)
-        #self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultarFecha)
-        
+        self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultarFecha)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -31,23 +29,20 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         self.uiRF.bConsultarRFecha.setIcon(iconIng)
         self.uiRF.bConsultarRFecha.setIconSize(QtCore.QSize(240, 50))            
     
-    def consultarFecha(self):
-        db = QSqlDatabase("QMYSQL");
-        db.setUserName("root")
-        db.setPassword("Joselito91")
-        db.setHostName("127.0.0.1")
-        db.setDatabaseName("SCTE")
+    def consultarFecha(self):        
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+        else: 
+                print 'Bases de Datos Abierta'
         
-        if not db.open():
-            self.setCentralWidget(self.uiRF.tableViewRF);
-            model = QSqlTableModel(self);
-            model.setTable("Conductor");
-            model.select();
+        model = QtSql.QSqlTableModel(self);
+        model.setQuery(QtSql.QSqlQuery("select * from Conductor where year(Fecha_Nacimiento)='2013'"))
+        model.select();
     
-            self.uiRF.tableViewRF.setModel(model);
-            self.uiRF.tableViewRF.setDisabled(True)
+        self.uiRF.tableViewRF.setModel(model)
+        self.uiRF.tableViewRF.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
             
-        
     def regresarVentanaF(self, ventana):
         self.principal = ventana
     

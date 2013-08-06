@@ -53,6 +53,6 @@ class pyVentanaP(QtGui.QMainWindow):
         self.db.setUserName("root");
         self.db.setPassword("Joselito91");
         self.db.setHostName("127.0.0.1");
-        self.db.setDatabaseName("SCTE");
+        self.db.setDatabaseName("trans");
         self.db.open()
         

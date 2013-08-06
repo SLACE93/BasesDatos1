@@ -17,7 +17,6 @@ class MyformUnidades(QtGui.QMainWindow):
         self.connect(self.uiU.bRegresarUnidades, QtCore.SIGNAL("clicked()"), self.regresarUnidades)
         self.connect(self.uiU.bingresarUnidades, QtCore.SIGNAL("clicked()"), self.ingresarUnidades)
         
-
     def setearBotones(self):
         iconReg = QtGui.QIcon()
         iconIng = QtGui.QIcon()
@@ -66,30 +65,25 @@ class MyformUnidades(QtGui.QMainWindow):
         matricula = self.uiU.lineEMatricula.displayText()
         capacidad = self.toInt(self.uiU.lineECapacidad.displayText())
         anoFab = self.uiU.lineEAnoFab.displayText()
-        fechaAd = "10/12/1999"
-        
-        iduser = self.toInt(1)
-        idUnidad = None
+        fechaAd = "2002/04/04"
   
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
                 print 'No se pudo abrir la BASES DE DATOS'
-            
+        
         query = QtSql.QSqlQuery()
-        query.prepare("""INSERT INTO Unidad (idUnidad, Matricula, Capacidad, Anio_Fab, Fecha_Adquisicion, IdUsuario) VALUES(?,?,?,?,?,?)""")
+        query.prepare("call PRInsertUnidad(?,?,?,?)")
 
-        query.addBindValue(idUnidad)
         query.addBindValue(matricula)
         query.addBindValue(capacidad)
         query.addBindValue(anoFab)
         query.addBindValue(fechaAd)
-        query.addBindValue(iduser)
                 
         if not query.exec_():
             QtGui.QMessageBox.warning( None, "Error al crear una Unidad",\
                                           "No se pudo INSERTAR una Unidad" ) 
         else:
-            QtGui.QMessageBox.information(self, "INFORMACION","Ah ingresado una  nueva Unidad")  
+            QtGui.QMessageBox.information(None, "INFORMACION","Ah ingresado una  nueva Unidad")  
     
     def toInt(self,num):
         try:

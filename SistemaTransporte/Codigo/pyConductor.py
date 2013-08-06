@@ -7,7 +7,6 @@ from PyQt4 import QtCore, QtGui, QtSql
 from Conductor import Ui_Conductor
 import exceptions
 
-
 class MyformConductor(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -17,7 +16,6 @@ class MyformConductor(QtGui.QMainWindow):
         
         self.connect(self.uiCond.bRegresarConductores, QtCore.SIGNAL("clicked()"),self.regresarConductor)
         self.connect(self.uiCond.bingresarConductores, QtCore.SIGNAL("clicked()"),self.ingresarConductor)
-
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -44,11 +42,11 @@ class MyformConductor(QtGui.QMainWindow):
         nombre = self.uiCond.lineENombre.displayText()
         
         if cedula!='' and licencia!='' and nombre!='':    
-            if len(cedula) != 10 or self.toInt(cedula)==None:
+            if len(cedula) != 10 or self.toInt(cedula) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de cedula incorrecto')
                 self.uiCond.lineEIDCedula.setText("")
                 
-            elif len(licencia) != 10 or self.toInt(licencia)==None:
+            elif len(licencia) != 10 or self.toInt(licencia) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de licencia incorrecto')
                 self.uiCond.lineENLicencia.setText("")
                                
@@ -68,30 +66,24 @@ class MyformConductor(QtGui.QMainWindow):
         licencia = str(self.uiCond.lineENLicencia.displayText())
         fechaHoy = QtCore.QDate.currentDate()
         fechaNac = self.uiCond.dEditFNac.date()
-        user = self.toInt(1)
-        ic = None
-
   
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
-            
+                print 'No se pudo abrir la BASES DE DATOS'  
         query = QtSql.QSqlQuery()
-        query.prepare("""INSERT INTO Conductor (Cedula, IdConductor,cNombre, NoLicencia, Fecha_Ingreso, Fecha_Nacimiento, IdUsuario) VALUES(?,?,?,?,?,?,?)""")
+        query.prepare("call PRInsertConductor(?,?,?,?,?)")
 
         query.addBindValue(idCed)
-        query.addBindValue(ic)
         query.addBindValue(nom)
         query.addBindValue(licencia)
         query.addBindValue(fechaHoy)
         query.addBindValue(fechaNac)
-        query.addBindValue(user)
                 
         if not query.exec_():
             QtGui.QMessageBox.warning( None, "Error al crear un conductor",\
                                           "No se pudo INSERTAR a un nuevo Conductor" ) 
         else:
-            QtGui.QMessageBox.information(self, "INFORMACION","Ah ingresado un  nuevo Conductor") 
+            QtGui.QMessageBox.information(None, "INFORMACION","Ah ingresado un  nuevo Conductor") 
 
     def toInt(self,num):
         try:

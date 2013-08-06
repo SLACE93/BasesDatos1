@@ -15,7 +15,6 @@ class MyformRecorridoHoras(QtGui.QMainWindow):
         
         self.connect(self.uiRH.bRegresarHoras, QtCore.SIGNAL("clicked()"), self.regresarHora)
 
-
     def setearBotones(self):
         iconReg = QtGui.QIcon()
         iconCons = QtGui.QIcon()
