@@ -65,7 +65,7 @@ class MyformUnidades(QtGui.QMainWindow):
         matricula = self.uiU.lineEMatricula.displayText()
         capacidad = self.toInt(self.uiU.lineECapacidad.displayText())
         anoFab = self.uiU.lineEAnoFab.displayText()
-        fechaAd = "2002/04/04"
+        fechaAd = QtCore.QDate.currentDate()
   
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():

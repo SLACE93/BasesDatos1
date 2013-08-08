@@ -36,8 +36,20 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         else: 
                 print 'Bases de Datos Abierta'
         
-        model = QtSql.QSqlTableModel(self);
-        model.setQuery(QtSql.QSqlQuery("select * from Conductor where year(Fecha_Nacimiento)='2013'"))
+        model = QtSql.QSqlTableModel(self)
+        print str(self.uiRF.dFechaInicial.DaySection)
+        
+        dia1 = self.uiRF.dFechaInicial.date().day()
+        mes1 = self.uiRF.dFechaInicial.date().month()
+        ano1 = self.uiRF.dFechaInicial.date().year()
+        fechaInicial = str(ano1)+"/"+str(mes1)+"/"+str(dia1)
+        
+        dia2 = self.uiRF.dFechaFinal.date().day()
+        mes2 = self.uiRF.dFechaFinal.date().month()
+        ano2 = self.uiRF.dFechaFinal.date().year()
+        fechaFinal = str(ano2)+"/"+str(mes2)+"/"+str(dia2)
+        
+        model.setQuery(QtSql.QSqlQuery("call PRQueryRecorridoFecha('"+fechaInicial+"','"+fechaFinal+"')"))
         model.select();
     
         self.uiRF.tableViewRF.setModel(model)

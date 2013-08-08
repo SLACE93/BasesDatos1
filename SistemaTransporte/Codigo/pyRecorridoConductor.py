@@ -4,7 +4,7 @@ Created on 27/07/2013
 @author: josanvel
 '''
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from RecorridoConductor import Ui_RecorridoConductor
 import exceptions
 
@@ -42,10 +42,39 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         if(self.idRCond !=''):
             if self.toInt(self.idRCond) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Conductor')
-            '''else: ingreso a la base '''
+            else:
+                self.consultarConductor()
+                
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
-              
+
+    def consultarConductor(self):
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+        else: 
+                print 'Bases de Datos Abierta'
+        
+        model = QtSql.QSqlTableModel(self)
+        
+        dia1 = self.uiRCond.fechaInicialRC.date().day()
+        mes1 = self.uiRCond.fechaInicialRC.date().month()
+        ano1 = self.uiRCond.fechaInicialRC.date().year()
+        fechaInicial = str(ano1)+"/"+str(mes1)+"/"+str(dia1)
+        
+        dia2 = self.uiRCond.fechaFinalRC.date().day()
+        mes2 = self.uiRCond.fechaFinalRC.date().month()
+        ano2 = self.uiRCond.fechaFinalRC.date().year()
+        fechaFinal = str(ano2)+"/"+str(mes2)+"/"+str(dia2)
+        
+        idCond = self.uiRCond.lineIDConductorRC.displayText()
+        
+        model.setQuery(QtSql.QSqlQuery("CALL PRQueryRecorridoConductor('"+idCond+"')"))
+        model.select();
+    
+        self.uiRCond.tableViewRC.setModel(model)
+        self.uiRCond.tableViewRC.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+        
     def toInt(self,num):
         try:
             return int(num)

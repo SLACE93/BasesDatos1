@@ -40,20 +40,26 @@ class MyformRecorridos(QtGui.QMainWindow):
         numPas = self.uiR.lineEPasajeros.displayText()
         idCon = self.uiR.lineEIDConductor.displayText()
         idUni = self.uiR.lineEIDUnidad.displayText()
+        indiceEstSal = self.uiR.comboBEstSalida.currentIndex() + 1
+        indiceEstLleg = self.uiR.comboBEstLlegada.currentIndex() +1
+        
 
         if idCon != '' and idUni != '' and numPas != '':    
             if self.toInt(idCon) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo ID Conductor')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo ID Conductor')
                 self.uiR.lineEIDConductor.setText("")
                 
             elif self.toInt(idUni) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo ID Unidad')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo ID Unidad')
                 self.uiR.lineEIDUnidad.setText("")
                 
             elif self.toInt(numPas) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de num Pasajeros')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo de num Pasajeros')
                 self.uiR.lineEPasajeros.setText("")
-                
+            elif self.uiR.comboBEstLlegada.currentText() == self.uiR.comboBEstSalida.currentText(): 
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Estacion de destino incorrecta')
+            elif indiceEstSal > 1 and indiceEstLleg >1  : 
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Recorrido no existente')
             else: 
                 self.IngresarOperacion()
                 self.hide()
@@ -71,11 +77,8 @@ class MyformRecorridos(QtGui.QMainWindow):
         horaS = self.uiR.timeEHoraS.time()
         horaLl = self.uiR.timeEHoraLl.time()
         
-        #idEstS = self.uiR.comboBEstSalida.currentText()
-        #idEstLl = self.uiR.comboBEstLlegada.currentText()
-        
-        idES = self.toInt(1)
-        idEL = self.toInt(2)
+        idEstS = self.uiR.comboBEstSalida.currentIndex() + 1
+        idEstLl = self.uiR.comboBEstLlegada.currentIndex() + 1
         
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
@@ -91,8 +94,8 @@ class MyformRecorridos(QtGui.QMainWindow):
         query.addBindValue(NoPasaj)
         query.addBindValue(horaS)
         query.addBindValue(horaLl)
-        query.addBindValue(idES)
-        query.addBindValue(idEL)
+        query.addBindValue(idEstS)
+        query.addBindValue(idEstLl)
                 
         if not query.exec_():
             QtGui.QMessageBox.warning( None, "Error al crear un Recorrido",\
