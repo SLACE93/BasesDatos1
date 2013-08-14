@@ -16,6 +16,7 @@ class MyformConsultas(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiCons = Ui_Consultas()
         self.uiCons.setupUi(self)
+        self.center()
         self.setearBotones()
         
         self.connect(self.uiCons.bRegresar, QtCore.SIGNAL("clicked()"), self.funcionRegresarConsultas)
@@ -83,3 +84,9 @@ class MyformConsultas(QtGui.QMainWindow):
         self.recorridoU = MyformRecorridoUnidad()
         self.recorridoU.regresarVentanaU(self)
         self.recorridoU.show()
+        
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())

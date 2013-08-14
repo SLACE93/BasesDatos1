@@ -17,6 +17,7 @@ class pyVentanaP(QtGui.QMainWindow):
         self.ui = Ui_Principal()
         self.ui.setupUi(self)
         self.IniciarBase()
+        self.center()
         
         self.connect(self.ui.brecorridos, QtCore.SIGNAL("clicked()"), self.entrarRecorridos)
         self.connect(self.ui.bconductores, QtCore.SIGNAL("clicked()"), self.entrarConductor)
@@ -51,8 +52,15 @@ class pyVentanaP(QtGui.QMainWindow):
     def IniciarBase(self):
         self.db = QtSql.QSqlDatabase.addDatabase("QMYSQL")
         self.db.setUserName("root");
-        self.db.setPassword("Joselito91");
+        #self.db.setPassword("Joselito91");
         self.db.setHostName("127.0.0.1");
-        self.db.setDatabaseName("trans");
+        #self.db.setDatabaseName("trans");
+        self.db.setDatabaseName("SCTE")
         self.db.open()
+    
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
         

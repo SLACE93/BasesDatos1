@@ -12,6 +12,7 @@ class MyformUnidades(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiU = Ui_Unidades()
         self.uiU.setupUi(self)
+        self.center()
         self.setearBotones()
         
         self.connect(self.uiU.bRegresarUnidades, QtCore.SIGNAL("clicked()"), self.regresarUnidades)
@@ -103,5 +104,11 @@ class MyformUnidades(QtGui.QMainWindow):
                 return False
         else:
             return False
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
             
         

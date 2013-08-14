@@ -12,6 +12,7 @@ class MyformConductor(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiCond = Ui_Conductor()
         self.uiCond.setupUi(self)
+        self.center()
         self.setearBotones()
         
         self.connect(self.uiCond.bRegresarConductores, QtCore.SIGNAL("clicked()"),self.regresarConductor)
@@ -61,7 +62,7 @@ class MyformConductor(QtGui.QMainWindow):
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
 
     def IngresarOperacion(self):
-        idCed = self.toInt(self.uiCond.lineEIDCedula.displayText())
+        idCed = str(self.uiCond.lineEIDCedula.displayText())
         nom = str(self.uiCond.lineENombre.displayText())
         licencia = str(self.uiCond.lineENLicencia.displayText())
         fechaHoy = QtCore.QDate.currentDate()
@@ -90,5 +91,11 @@ class MyformConductor(QtGui.QMainWindow):
             return int(num)
         except exceptions.ValueError:
             return None
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
         

@@ -56,7 +56,7 @@ class Ui_Principal(QtGui.QMainWindow):
         self.brecorridos.setObjectName(_fromUtf8("brecorridos"))
         self.label = QtGui.QLabel(self.centralwidget)
         self.label.setStyleSheet("background-image: url()")
-        self.label.setGeometry(QtCore.QRect(20, 70, 581, 31))
+        self.label.setGeometry(QtCore.QRect(20, 100, 581, 31))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("DejaVu Serif"))
         font.setPointSize(20)

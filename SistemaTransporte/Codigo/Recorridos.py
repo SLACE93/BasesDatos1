@@ -1,4 +1,7 @@
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QComboBox, QApplication, QCompleter, QSortFilterProxyModel, QStandardItemModel, QStandardItem
+from PyQt4.QtCore import Qt
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -62,12 +65,18 @@ class Ui_Recorridos(QtGui.QMainWindow):
         font.setWeight(75)
         self.lIDUnidad.setFont(font)
         self.lIDUnidad.setObjectName(_fromUtf8("lIDUnidad"))
-        self.lineEIDConductor = QtGui.QLineEdit(Recorridos)
+        self.comboBIDConductor = ExtendedComboBox(Recorridos)
+        self.comboBIDConductor.setGeometry(QtCore.QRect(230, 90, 301, 27))
+        self.comboBIDConductor.setObjectName(_fromUtf8("comboBIDConductor"))
+        '''self.lineEIDConductor = QtGui.QLineEdit(Recorridos)
         self.lineEIDConductor.setGeometry(QtCore.QRect(230, 90, 301, 27))
-        self.lineEIDConductor.setObjectName(_fromUtf8("lineEIDConductor"))
-        self.lineEIDUnidad = QtGui.QLineEdit(Recorridos)
+        self.lineEIDConductor.setObjectName(_fromUtf8("lineEIDConductor"))'''
+        self.comboBIDUnidad = ExtendedComboBox(Recorridos)
+        self.comboBIDUnidad.setGeometry(QtCore.QRect(230, 130, 301, 27))
+        self.comboBIDUnidad.setObjectName(_fromUtf8("comboBIDUnidad"))
+        '''self.lineEIDUnidad = QtGui.QLineEdit(Recorridos)
         self.lineEIDUnidad.setGeometry(QtCore.QRect(230, 130, 301, 27))
-        self.lineEIDUnidad.setObjectName(_fromUtf8("lineEIDUnidad"))
+        self.lineEIDUnidad.setObjectName(_fromUtf8("lineEIDUnidad"))'''
         self.lineEPasajeros = QtGui.QLineEdit(Recorridos)
         self.lineEPasajeros.setGeometry(QtCore.QRect(350, 180, 81, 27))
         self.lineEPasajeros.setObjectName(_fromUtf8("lineEPasajeros"))

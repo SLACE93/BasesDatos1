@@ -12,7 +12,9 @@ class MyformRecorridos(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiR = Ui_Recorridos()
         self.uiR.setupUi(self)
+        self.center()
         self.setearBotones()
+        self.setConductores_Unidad()
         
         self.connect(self.uiR.bRegresarRecorridos, QtCore.SIGNAL("clicked()"), self.regresarRecorrido)
         self.connect(self.uiR.bingresarRecorridos, QtCore.SIGNAL("clicked()"), self.ingresarRecorrido)
@@ -38,10 +40,16 @@ class MyformRecorridos(QtGui.QMainWindow):
     
     def ingresarRecorrido(self):
         numPas = self.uiR.lineEPasajeros.displayText()
-        idCon = self.uiR.lineEIDConductor.displayText()
-        idUni = self.uiR.lineEIDUnidad.displayText()
+        conductor = self.uiR.comboBIDConductor.currentText()
+        unidad = self.uiR.comboBIDUnidad.currentText()
         indiceEstSal = self.uiR.comboBEstSalida.currentIndex() + 1
         indiceEstLleg = self.uiR.comboBEstLlegada.currentIndex() +1
+        c = conductor.split('-')
+        u = unidad.split('-')
+        idCon = c[0]
+        idUni = u[0]
+        print idCon
+        print idUni
         
 
         if idCon != '' and idUni != '' and numPas != '':    
@@ -61,16 +69,17 @@ class MyformRecorridos(QtGui.QMainWindow):
             elif indiceEstSal > 1 and indiceEstLleg >1  : 
                 QtGui.QMessageBox.information(None, 'Ingreso erroneo','Recorrido no existente')
             else: 
-                self.IngresarOperacion()
+                self.IngresarOperacion(idCon,idUni)
                 self.hide()
                 self.ventana.show()    
         else:
+            self.uiR.setStyleSheet(("background-image: url()"))
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+
             
-    def IngresarOperacion(self):
-        idRecorrido = self.toInt(1)
-        idConductor = self.toInt(1)
-        idUnidad = self.toInt(1)
+    def IngresarOperacion(self, idCo,idUn):
+        idConductor = self.toInt(idCo)
+        idUnidad = self.toInt(idUn)
         
         fecha = QtCore.QDate.currentDate()
         NoPasaj = self.toInt(self.uiR.lineEPasajeros.displayText())
@@ -85,9 +94,8 @@ class MyformRecorridos(QtGui.QMainWindow):
                 print 'No se pudo abrir la BASES DE DATOS'
         
         query = QtSql.QSqlQuery()
-        query.prepare("call PRInsertRecorrido(?,?,?,?,?,?,?,?,?)")
+        query.prepare("call PRInsertRecorrido(?,?,?,?,?,?,?,?)")
 
-        query.addBindValue(idRecorrido)
         query.addBindValue(fecha)
         query.addBindValue(idConductor)
         query.addBindValue(idUnidad)
@@ -108,7 +116,44 @@ class MyformRecorridos(QtGui.QMainWindow):
             return int(num)
         except exceptions.ValueError:
             return None
+
+    def setConductores_Unidad(self):
+        lista_Conductores = []
+        lista_Unidades = [] 
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+                
+        query = QtSql.QSqlQuery("call PRGetConductor")
+        fieldNo_Id = query.record().indexOf("IdConductor")
+        fieldNo_Ced = query.record().indexOf("Cedula")
+        fieldNo_Nom =query.record().indexOf("cNombre")
         
+        while query.next():
+            idC = query.value(fieldNo_Id).toString()
+            cedula = query.value(fieldNo_Ced).toString()
+            nombre = query.value(fieldNo_Nom).toString()
+            ced_nombre = idC + '-' + cedula + '-' + nombre
+            lista_Conductores.append(ced_nombre)
+        print lista_Conductores
+        self.uiR.comboBIDConductor.addItems(lista_Conductores)
+        
+        query = QtSql.QSqlQuery("call PRGetUnidad")
+        fieldNo_Uni = query.record().indexOf("IdUnidad")
+        fieldNo_Cap = query.record().indexOf("Capacidad")
+        while query.next():
+            idUni = query.value(fieldNo_Uni).toString()
+            capacidad = query.value(fieldNo_Cap).toString()
+            id_capacidad = idUni + '-Capacidad: ' + capacidad
+            lista_Unidades.append(id_capacidad)
+        self.uiR.comboBIDUnidad.addItems(lista_Unidades)
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+            
         
 
         

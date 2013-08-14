@@ -11,6 +11,7 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiRF = Ui_RecorridoFecha()
         self.uiRF.setupUi(self)
+        self.center()
         self.setearBotones()
         
         
@@ -53,6 +54,7 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         model.select();
     
         self.uiRF.tableViewRF.setModel(model)
+        self.uiRF.tableViewRF.resizeColumnsToContents()
         self.uiRF.tableViewRF.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
             
     def regresarVentanaF(self, ventana):
@@ -61,3 +63,9 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
     def regresarFecha(self):
         self.hide()
         self.principal.show()
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())

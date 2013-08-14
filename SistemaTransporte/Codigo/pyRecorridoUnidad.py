@@ -3,7 +3,7 @@ Created on 27/07/2013
 
 @author: josanvel
 '''
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from RecorridoUnidad import Ui_RecorridoUnidad
 import exceptions
 
@@ -12,10 +12,12 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.uiRU = Ui_RecorridoUnidad()
         self.uiRU.setupUi(self)
+        self.center()
         self.setearBotones()
+        self.setUnidades()
 
         self.connect(self.uiRU.bRegresarRUnidad, QtCore.SIGNAL("clicked()"), self.regresarUnidad)
-        self.connect(self.uiRU.bConsultarRUnidad, QtCore.SIGNAL("clicked()"), self.consultarUnidad)
+        self.connect(self.uiRU.bConsultarRUnidad, QtCore.SIGNAL("clicked()"), self.consultarRecorridoUnidad)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -36,19 +38,64 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
         self.hide()
         self.principal.show()
     
-    def consultarUnidad(self):
-        self.idUnidad = self.uiRU.lineIDUnidad.displayText()
+    def consultarRecorridoUnidad(self):
+        
+        self.idUnidad = self.uiRU.comboBIDUnidadRU.currentText()
         if(self.idUnidad !=''):
             if self.toInt(self.idUnidad) == None:
                 QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Unidad')
-            '''else: ingreso a la base '''
+            else: 
+                print 'ingreso a la base'
+                self.consultarUnidad()
         else:
             QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
-     
+
+
+    def consultarUnidad(self):
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+        else: 
+                print 'Bases de Datos Abierta'
+        
+        model = QtSql.QSqlTableModel(self)
+        
+        unidad = self.uiRU.comboBIDUnidadRU.currentText()
+        print unidad
+        model.setQuery(QtSql.QSqlQuery("CALL PRQueryRecorridoUnidad('"+unidad+"')"))
+
+        self.uiRU.tableViewRU.setModel(model)
+        self.uiRU.tableViewRU.resizeColumnsToContents()
+        self.uiRU.tableViewRU.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+    
+    
     def toInt(self,num):
         try:
             return int(num)
         except exceptions.ValueError:
             return None
         
+    def setUnidades(self):
+        lista_Unidades = [] 
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                print 'No se pudo abrir la BASES DE DATOS'
+                
+
+        query = QtSql.QSqlQuery("call PRGetUnidad")
+        fieldNo_Uni = query.record().indexOf("IdUnidad")
+        #fieldNo_Cap = query.record().indexOf("Capacidad")
+        while query.next():
+            idUni = query.value(fieldNo_Uni).toString()
+            #capacidad = query.value(fieldNo_Cap).toString()
+            #id_capacidad = idUni + '-Capacidad: ' + capacidad
+            lista_Unidades.append(idUni)
+            
+        self.uiRU.comboBIDUnidadRU.addItems(lista_Unidades)
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtGui.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
             
