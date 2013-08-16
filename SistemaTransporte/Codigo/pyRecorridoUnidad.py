@@ -43,12 +43,12 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
         self.idUnidad = self.uiRU.comboBIDUnidadRU.currentText()
         if(self.idUnidad !=''):
             if self.toInt(self.idUnidad) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Unidad')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Unidad')
             else: 
                 print 'ingreso a la base'
                 self.consultarUnidad()
         else:
-            QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+            QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
 
 
     def consultarUnidad(self):

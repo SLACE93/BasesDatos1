@@ -45,12 +45,12 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         
         if(self.idRCond !=''):
             if self.toInt(self.idRCond) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Conductor')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Conductor')
             else:
                 self.consultarConductor()
                 
         else:
-            QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+            QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
 
     def consultarConductor(self):
         if not QtSql.QSqlDatabase.database().isOpen():

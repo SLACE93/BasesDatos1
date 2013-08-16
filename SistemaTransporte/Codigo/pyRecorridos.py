@@ -6,6 +6,7 @@ Created on 27/07/2013
 from PyQt4 import QtCore, QtGui, QtSql
 from Recorridos import Ui_Recorridos
 import exceptions
+from Tkconstants import NO
 
 class MyformRecorridos(QtGui.QMainWindow):
     def __init__(self, parent=None):
@@ -74,7 +75,7 @@ class MyformRecorridos(QtGui.QMainWindow):
                 self.ventana.show()    
         else:
             self.uiR.setStyleSheet(("background-image: url()"))
-            QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+            QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
 
             
     def IngresarOperacion(self, idCo,idUn):

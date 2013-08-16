@@ -31,9 +31,10 @@ class MyformRecorridoHoras(QtGui.QMainWindow):
         
     
     def consultarRecorridoHora(self):
-        horaInic = self.uiRH.timeHoraInicialRH.time()
-        horaFinal = self.uiRH.timeHoraFinalRH.time()
-        
+        horaInic = self.uiRH.timeHoraInicialRH.time().toString("hh:mm:ss")
+        horaFinal = self.uiRH.timeHoraFinalRH.time().toString("hh:mm:ss")
+        print horaInic
+        print horaFinal
         if horaInic >= horaFinal:
             QtGui.QMessageBox.information(None, 'Ingreso erroneo','Hora final incorrecta')
         else:

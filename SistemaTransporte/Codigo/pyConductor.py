@@ -44,22 +44,22 @@ class MyformConductor(QtGui.QMainWindow):
         
         if cedula!='' and licencia!='' and nombre!='':    
             if len(cedula) != 10 or self.toInt(cedula) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de cedula incorrecto')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Numero de cedula incorrecto')
                 self.uiCond.lineEIDCedula.setText("")
                 
             elif len(licencia) != 10 or self.toInt(licencia) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de licencia incorrecto')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Numero de licencia incorrecto')
                 self.uiCond.lineENLicencia.setText("")
                                
             elif self.toInt(nombre):
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Nombre incorrecto')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Nombre incorrecto')
                 self.uiCond.lineENombre.setText("")
             else:
                 self.IngresarOperacion() 
                 self.hide()
                 self.ventana.show()
         else:
-            QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+            QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
 
     def IngresarOperacion(self):
         idCed = str(self.uiCond.lineEIDCedula.displayText())

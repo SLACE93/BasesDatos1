@@ -44,15 +44,15 @@ class MyformUnidades(QtGui.QMainWindow):
         
         if matricula != '' and capacidad != '' and anoF != '':    
             if self.valMatricula(matricula) == False:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','Numero de matricula incorrecto')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','Numero de matricula incorrecto')
                 self.uiU.lineEMatricula.setText("")
                 
             elif self.toInt(capacidad) == None:  
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','El campo capacidad solo admite enteros')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','El campo capacidad solo admite enteros')
                 self.uiU.lineECapacidad.setText("")
                 
             elif self.toInt(anoF) == None:
-                QtGui.QMessageBox.information(self, 'Ingreso erroneo','El campo anio fabricacion solo admite enteros')
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo','El campo anio fabricacion solo admite enteros')
                 self.uiU.lineEAnoFab.setText("")
             else:
                 self.IngresarOperacion()
@@ -60,7 +60,7 @@ class MyformUnidades(QtGui.QMainWindow):
                 self.ventanaPrincipal.show()
                 
         else:
-            QtGui.QMessageBox.information(self, 'Campos vacios', 'Todos los campos deben contener informacion')
+            QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
 
     def IngresarOperacion(self):
         matricula = self.uiU.lineEMatricula.displayText()
