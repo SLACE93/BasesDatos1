@@ -32,7 +32,7 @@ class Ui_RecorridoUnidad(object):
         self.TitleRecorridoUnidad.setFont(font)
         self.TitleRecorridoUnidad.setObjectName(_fromUtf8("TitleRecorridoUnidad"))
         self.comboBIDUnidadRU = ExtendedComboBox(RecorridoUnidad)
-        self.comboBIDUnidadRU.setGeometry(QtCore.QRect(290, 100, 211, 27))
+        self.comboBIDUnidadRU.setGeometry(QtCore.QRect(290, 70, 211, 27))
         self.comboBIDUnidadRU.setObjectName(_fromUtf8("comboBIDUnidadRU"))
         '''
         self.lineIDConductorRU = QtGui.QLineEdit(RecorridoUnidad)
@@ -43,7 +43,7 @@ class Ui_RecorridoUnidad(object):
         self.dfechaFinalRU.setObjectName(_fromUtf8("dfechaFinalRU"))'''
         self.lIDUnidad = QtGui.QLabel(RecorridoUnidad)
         self.lIDUnidad.setStyleSheet("background-image: url()")
-        self.lIDUnidad.setGeometry(QtCore.QRect(170, 100, 111, 20))
+        self.lIDUnidad.setGeometry(QtCore.QRect(170, 70, 111, 20))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
@@ -78,7 +78,7 @@ class Ui_RecorridoUnidad(object):
         self.bRegresarRUnidad.setGeometry(QtCore.QRect(50, 440, 240, 50))
         self.bRegresarRUnidad.setObjectName(_fromUtf8("bRegresarRUnidad"))
         self.tableViewRU = QtGui.QTableView(RecorridoUnidad)
-        self.tableViewRU.setGeometry(QtCore.QRect(30, 160, 570, 260))
+        self.tableViewRU.setGeometry(QtCore.QRect(30, 120, 570, 300))
         self.tableViewRU.setStyleSheet("background-image: url()")
         self.tableViewRU.setObjectName(_fromUtf8("tableViewRU"))
 

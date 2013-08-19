@@ -54,6 +54,8 @@ class MyformUnidades(QtGui.QMainWindow):
             elif self.toInt(anoF) == None:
                 QtGui.QMessageBox.information(None, 'Ingreso erroneo','El campo anio fabricacion solo admite enteros')
                 self.uiU.lineEAnoFab.setText("")
+            elif self.toInt(capacidad)>50:
+                QtGui.QMessageBox.information(None, 'Ingreso erroneo', 'Valor de capacidad incorrecto')
             else:
                 self.IngresarOperacion()
                 self.hide()

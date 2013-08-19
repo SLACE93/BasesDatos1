@@ -16,7 +16,7 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         
         
         self.connect(self.uiRF.bRegresarRFecha, QtCore.SIGNAL("clicked()"), self.regresarFecha)
-        self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultarFecha)
+        self.connect(self.uiRF.bConsultarRFecha, QtCore.SIGNAL("clicked()"), self.consultar)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -30,6 +30,14 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
         self.uiRF.bConsultarRFecha.setIcon(iconIng)
         self.uiRF.bConsultarRFecha.setIconSize(QtCore.QSize(240, 50))            
     
+    def consultar(self):
+        fechaInicial = self.uiRF.dFechaInicial.date()
+        fechaFinal = self.uiRF.dFechaFinal.date()
+        if fechaInicial>=fechaFinal:
+            QtGui.QMessageBox.information(None,"Ingreso erroneo","Fecha final incorrecta")
+        else:
+            self.consultarFecha()
+        
     def consultarFecha(self):        
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():

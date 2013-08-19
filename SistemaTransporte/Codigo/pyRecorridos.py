@@ -6,7 +6,6 @@ Created on 27/07/2013
 from PyQt4 import QtCore, QtGui, QtSql
 from Recorridos import Ui_Recorridos
 import exceptions
-from Tkconstants import NO
 
 class MyformRecorridos(QtGui.QMainWindow):
     def __init__(self, parent=None):
@@ -45,12 +44,18 @@ class MyformRecorridos(QtGui.QMainWindow):
         unidad = self.uiR.comboBIDUnidad.currentText()
         indiceEstSal = self.uiR.comboBEstSalida.currentIndex() + 1
         indiceEstLleg = self.uiR.comboBEstLlegada.currentIndex() +1
+        horaS = self.uiR.timeEHoraS.time()
+        horaLl = self.uiR.timeEHoraLl.time()
         c = conductor.split('-')
         u = unidad.split('-')
         idCon = c[0]
         idUni = u[0]
+        aux = u[1].split(':')
+        capacidad = aux[1]
+        
         print idCon
         print idUni
+        print capacidad
         
 
         if idCon != '' and idUni != '' and numPas != '':    
@@ -69,6 +74,11 @@ class MyformRecorridos(QtGui.QMainWindow):
                 QtGui.QMessageBox.information(None, 'Ingreso erroneo','Estacion de destino incorrecta')
             elif indiceEstSal > 1 and indiceEstLleg >1  : 
                 QtGui.QMessageBox.information(None, 'Ingreso erroneo','Recorrido no existente')
+            elif self.toInt(numPas)>self.toInt(capacidad):
+                QtGui.QMessageBox.information(None,'Ingreso erroneo','Numero de pasajeros, excede la capacidad')
+                self.uiR.lineEPasajeros.setText("")
+            elif horaS >= horaLl:
+                QtGui.QMessageBox.information(None,'Ingreso erroneo','Hora de llegada incorrecta')
             else: 
                 self.IngresarOperacion(idCon,idUni)
                 self.hide()
@@ -145,7 +155,7 @@ class MyformRecorridos(QtGui.QMainWindow):
         while query.next():
             idUni = query.value(fieldNo_Uni).toString()
             capacidad = query.value(fieldNo_Cap).toString()
-            id_capacidad = idUni + '-Capacidad: ' + capacidad
+            id_capacidad = idUni + '-Capacidad:' + capacidad
             lista_Unidades.append(id_capacidad)
         self.uiR.comboBIDUnidad.addItems(lista_Unidades)
 
