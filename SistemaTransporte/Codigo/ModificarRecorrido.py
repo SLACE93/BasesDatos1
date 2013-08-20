@@ -1,4 +1,5 @@
 from PyQt4 import QtCore, QtGui
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -20,6 +21,7 @@ class Ui_ModificarRecorrido(object):
         ModificarRecorrido.resize(640, 520)
         ModificarRecorrido.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.TitleModificarRecorrido = QtGui.QLabel(ModificarRecorrido)
+        self.TitleModificarRecorrido.setStyleSheet(("background-image: url()")) 
         self.TitleModificarRecorrido.setGeometry(QtCore.QRect(170, 50, 311, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -29,6 +31,7 @@ class Ui_ModificarRecorrido(object):
         self.TitleModificarRecorrido.setFont(font)
         self.TitleModificarRecorrido.setObjectName(_fromUtf8("TitleModificarRecorrido"))
         self.lIDRecorrido = QtGui.QLabel(ModificarRecorrido)
+        self.lIDRecorrido.setStyleSheet(("background-image: url()")) 
         self.lIDRecorrido.setGeometry(QtCore.QRect(260, 110, 141, 20))
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -43,9 +46,10 @@ class Ui_ModificarRecorrido(object):
         self.bRegresarRecorrido.setGeometry(QtCore.QRect(50, 440, 240, 50))
         self.bRegresarRecorrido.setObjectName(_fromUtf8("bRegresarRecorrido"))
         self.tableViewMR = QtGui.QTableView(ModificarRecorrido)
+        self.tableViewMR.setStyleSheet(("background-image: url()")) 
         self.tableViewMR.setGeometry(QtCore.QRect(30, 221, 570, 200))
         self.tableViewMR.setObjectName(_fromUtf8("tableViewMR"))
-        self.cboxIDRecorrido = QtGui.QComboBox(ModificarRecorrido)
+        self.cboxIDRecorrido = ExtendedComboBox(ModificarRecorrido)
         self.cboxIDRecorrido.setGeometry(QtCore.QRect(170, 150, 321, 27))
         self.cboxIDRecorrido.setObjectName(_fromUtf8("cboxIDRecorrido"))
 

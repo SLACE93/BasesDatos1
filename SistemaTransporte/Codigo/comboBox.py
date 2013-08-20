@@ -4,7 +4,6 @@ Created on Aug 10, 2013
 @author: slace93
 '''
 
-import sys
 from PyQt4.QtGui import QComboBox, QCompleter, QSortFilterProxyModel
 from PyQt4.QtCore import Qt
 

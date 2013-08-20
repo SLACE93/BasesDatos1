@@ -1,4 +1,5 @@
 from PyQt4 import QtCore, QtGui
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -20,6 +21,7 @@ class Ui_EliminarUnidad(object):
         EliminarUnidad.resize(640, 520)
         EliminarUnidad.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.labelEliminar = QtGui.QLabel(EliminarUnidad)
+        self.labelEliminar.setStyleSheet(("background-image: url()")) 
         self.labelEliminar.setGeometry(QtCore.QRect(200, 60, 251, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -32,6 +34,7 @@ class Ui_EliminarUnidad(object):
         self.bEliminarUnidad.setGeometry(QtCore.QRect(60, 430, 240, 50))
         self.bEliminarUnidad.setObjectName(_fromUtf8("bEliminarUnidad"))
         self.lIDUnidad = QtGui.QLabel(EliminarUnidad)
+        self.lIDUnidad.setStyleSheet(("background-image: url()")) 
         self.lIDUnidad.setGeometry(QtCore.QRect(280, 200, 101, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -40,7 +43,7 @@ class Ui_EliminarUnidad(object):
         font.setWeight(75)
         self.lIDUnidad.setFont(font)
         self.lIDUnidad.setObjectName(_fromUtf8("lIDUnidad"))
-        self.cboxIDUnidad = QtGui.QComboBox(EliminarUnidad)
+        self.cboxIDUnidad = ExtendedComboBox(EliminarUnidad)
         self.cboxIDUnidad.setGeometry(QtCore.QRect(170, 260, 321, 31))
         self.cboxIDUnidad.setObjectName(_fromUtf8("cboxIDUnidad"))
         self.bRegresarEUnidad = QtGui.QPushButton(EliminarUnidad)

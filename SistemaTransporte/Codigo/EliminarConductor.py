@@ -1,4 +1,5 @@
 from PyQt4 import QtCore, QtGui
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -20,6 +21,7 @@ class Ui_EliminarConductor(object):
         EliminarConductor.resize(640, 520)
         EliminarConductor.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.labelConsultas = QtGui.QLabel(EliminarConductor)
+        self.labelConsultas.setStyleSheet(("background-image: url()")) 
         self.labelConsultas.setGeometry(QtCore.QRect(170, 60, 311, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -32,6 +34,7 @@ class Ui_EliminarConductor(object):
         self.bEliminarConductor.setGeometry(QtCore.QRect(60, 430, 240, 50))
         self.bEliminarConductor.setObjectName(_fromUtf8("bEliminarConductor"))
         self.lIDConductor = QtGui.QLabel(EliminarConductor)
+        self.lIDConductor.setStyleSheet(("background-image: url()")) 
         self.lIDConductor.setGeometry(QtCore.QRect(260, 200, 131, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -40,7 +43,7 @@ class Ui_EliminarConductor(object):
         font.setWeight(75)
         self.lIDConductor.setFont(font)
         self.lIDConductor.setObjectName(_fromUtf8("lIDConductor"))
-        self.cboxIDConductor = QtGui.QComboBox(EliminarConductor)
+        self.cboxIDConductor = ExtendedComboBox(EliminarConductor)
         self.cboxIDConductor.setGeometry(QtCore.QRect(160, 260, 321, 31))
         self.cboxIDConductor.setObjectName(_fromUtf8("cboxIDConductor"))
         self.bRegresarEConductor = QtGui.QPushButton(EliminarConductor)

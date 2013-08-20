@@ -27,6 +27,7 @@ class Ui_Modificar(object):
         font.setItalic(True)
         font.setWeight(75)
         self.labelConsultas.setFont(font)
+        self.labelConsultas.setStyleSheet(("background-image: url()")) 
         self.labelConsultas.setObjectName(_fromUtf8("labelConsultas"))
         self.bModificarUnidad = QtGui.QPushButton(Modificar)
         self.bModificarUnidad.setGeometry(QtCore.QRect(90, 320, 450, 50))

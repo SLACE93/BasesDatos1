@@ -1,4 +1,5 @@
 from PyQt4 import QtCore, QtGui
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -20,6 +21,7 @@ class Ui_EliminarRecorrido(object):
         EliminarRecorrido.resize(640, 520)
         EliminarRecorrido.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.labelEliminar = QtGui.QLabel(EliminarRecorrido)
+        self.labelEliminar.setStyleSheet(("background-image: url()")) 
         self.labelEliminar.setGeometry(QtCore.QRect(180, 60, 291, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -32,6 +34,7 @@ class Ui_EliminarRecorrido(object):
         self.bEliminarRecorrido.setGeometry(QtCore.QRect(60, 430, 240, 50))
         self.bEliminarRecorrido.setObjectName(_fromUtf8("bEliminarRecorrido"))
         self.lIDRecorrido = QtGui.QLabel(EliminarRecorrido)
+        self.lIDRecorrido.setStyleSheet(("background-image: url()")) 
         self.lIDRecorrido.setGeometry(QtCore.QRect(270, 200, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -40,7 +43,7 @@ class Ui_EliminarRecorrido(object):
         font.setWeight(75)
         self.lIDRecorrido.setFont(font)
         self.lIDRecorrido.setObjectName(_fromUtf8("lIDRecorrido"))
-        self.cboxIDRecorrido = QtGui.QComboBox(EliminarRecorrido)
+        self.cboxIDRecorrido = ExtendedComboBox(EliminarRecorrido)
         self.cboxIDRecorrido.setGeometry(QtCore.QRect(170, 260, 321, 31))
         self.cboxIDRecorrido.setObjectName(_fromUtf8("cboxIDRecorrido"))
         self.bRegresarERecorrido = QtGui.QPushButton(EliminarRecorrido)

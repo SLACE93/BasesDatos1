@@ -14,9 +14,10 @@ class MyformEliminarUnidad(QtGui.QMainWindow):
         self.uiEUnidad = Ui_EliminarUnidad()
         self.uiEUnidad.setupUi(self)
         self.center()
+        self.setUnidad()
         
-        self.connect(self.uiEUnidad.bRegresarEUnidad, QtCore.SIGNAL("clicked()"), self.regresarConductor)
-        #self.connect(self.uiEUnidad.bEliminarUnidad, QtCore.SIGNAL("clicked()"), self.modificarConductor)
+        self.connect(self.uiEUnidad.bRegresarEUnidad, QtCore.SIGNAL("clicked()"), self.regresarUnidad)
+        self.connect(self.uiEUnidad.bEliminarUnidad, QtCore.SIGNAL("clicked()"), self.eliminarUnidad)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -33,7 +34,7 @@ class MyformEliminarUnidad(QtGui.QMainWindow):
     def regresarVentana(self, ventana):
         self.principal = ventana
         
-    def regresarConductor(self):
+    def regresarUnidad(self):
         self.hide()
         self.principal.show()
 
@@ -42,3 +43,35 @@ class MyformEliminarUnidad(QtGui.QMainWindow):
         cp = QtGui.QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+
+    def setUnidad(self):
+        lista_Unidades = []
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+                
+        query = QtSql.QSqlQuery("call PRGetUnidad")
+        fieldNo_Uni = query.record().indexOf("IdUnidad")
+        fieldNo_Cap = query.record().indexOf("Capacidad")
+        
+        while query.next():
+            idU = query.value(fieldNo_Uni).toString()
+            capacidad = query.value(fieldNo_Cap).toString()
+            id_capacidad = idU + '-Capacidad:' + capacidad
+            lista_Unidades.append(id_capacidad)
+        
+        self.uiEUnidad.cboxIDUnidad.addItems(lista_Unidades)
+        
+    def eliminarUnidad(self):
+        QtGui.QMessageBox.information(None,'Eliminar Unidad', 'Usted esta seguro de ELIMINAR una Unidades')
+        idRecorrido = self.uiEUnidad.cboxIDUnidad.currentText()
+        lista = idRecorrido.split("-")
+        
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+        
+        model = QtSql.QSqlTableModel(self)
+        model.setQuery(QtSql.QSqlQuery("DELETE FROM Unidad Where IdUnidad="+lista[0]+";"))
+
+        

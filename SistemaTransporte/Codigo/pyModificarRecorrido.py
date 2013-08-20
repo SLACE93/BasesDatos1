@@ -8,9 +8,10 @@ class MyformModificarRecorrido(QtGui.QMainWindow):
         self.uiMRec = Ui_ModificarRecorrido()
         self.uiMRec.setupUi(self)
         self.center()
+        self.setRecorrido()
         
         self.connect(self.uiMRec.bRegresarRecorrido, QtCore.SIGNAL("clicked()"), self.regresarRecorrido)
-        #self.connect(self.uiMRec.bModificarRecorrido, QtCore.SIGNAL("clicked()"), self.modificarConductor)
+        self.connect(self.uiMRec.bModificarRecorrido, QtCore.SIGNAL("clicked()"), self.modificarRecorrido)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -36,3 +37,36 @@ class MyformModificarRecorrido(QtGui.QMainWindow):
         cp = QtGui.QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+        
+    def setRecorrido(self):
+        lista_Recorrido = []
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+                
+        query = QtSql.QSqlQuery("select * from Recorrido")
+        fieldNo_Id = query.record().indexOf("IdRecorrido")
+        fieldFecha = query.record().indexOf("Fecha")
+        "select Fecha,NoPasajeros,Hora_Salida, HoraLlegada from Recorrido  Where IdRecorrido="
+        while query.next():
+            idR = query.value(fieldNo_Id).toString()
+            fecha = query.value(fieldFecha).toString()
+            id_fecha = idR + '-Fecha: ' + fecha
+            lista_Recorrido.append(id_fecha)
+        
+        self.uiMRec.cboxIDRecorrido.addItems(lista_Recorrido)
+        
+    def modificarRecorrido(self):
+        QtGui.QMessageBox.information(None,'Modificar Recorrido', 'Usted podra modificar cualquier dato del Recorrido')
+        idRecorrido = self.uiMRec.cboxIDRecorrido.currentText()
+        lista = idRecorrido.split("-")
+        
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+        
+        model = QtSql.QSqlTableModel(self)
+        model.setQuery(QtSql.QSqlQuery("select Fecha, NoPasajeros, Hora_Salida,  Hora_Llegada from Recorrido r Where IdRecorrido="+lista[0]+";"))
+
+        self.uiMRec.tableViewMR.setModel(model)
+        self.uiMRec.tableViewMR.resizeColumnsToContents()

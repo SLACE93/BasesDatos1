@@ -1,4 +1,5 @@
 from PyQt4 import QtCore, QtGui
+from comboBox import ExtendedComboBox
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -20,6 +21,7 @@ class Ui_ModificarUnidad(object):
         ModificarUnidad.resize(640, 520)
         ModificarUnidad.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.TitleModificarUnidad = QtGui.QLabel(ModificarUnidad)
+        self.TitleModificarUnidad.setStyleSheet(("background-image: url()"))  
         self.TitleModificarUnidad.setGeometry(QtCore.QRect(180, 50, 271, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -29,6 +31,7 @@ class Ui_ModificarUnidad(object):
         self.TitleModificarUnidad.setFont(font)
         self.TitleModificarUnidad.setObjectName(_fromUtf8("TitleModificarUnidad"))
         self.lIDUnidad = QtGui.QLabel(ModificarUnidad)
+        self.lIDUnidad.setStyleSheet(("background-image: url()")) 
         self.lIDUnidad.setGeometry(QtCore.QRect(280, 110, 101, 20))
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -43,9 +46,10 @@ class Ui_ModificarUnidad(object):
         self.bRegresarUnidad.setGeometry(QtCore.QRect(50, 440, 240, 50))
         self.bRegresarUnidad.setObjectName(_fromUtf8("bRegresarUnidad"))
         self.tableViewMU = QtGui.QTableView(ModificarUnidad)
+        self.tableViewMU.setStyleSheet(("background-image: url()")) 
         self.tableViewMU.setGeometry(QtCore.QRect(30, 221, 570, 200))
         self.tableViewMU.setObjectName(_fromUtf8("tableViewMU"))
-        self.cboxIDUnidad = QtGui.QComboBox(ModificarUnidad)
+        self.cboxIDUnidad = ExtendedComboBox(ModificarUnidad)
         self.cboxIDUnidad.setGeometry(QtCore.QRect(170, 150, 321, 27))
         self.cboxIDUnidad.setObjectName(_fromUtf8("cboxIDUnidad"))
 

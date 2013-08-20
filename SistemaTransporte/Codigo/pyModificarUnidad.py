@@ -8,9 +8,10 @@ class MyformModificarUnidad(QtGui.QMainWindow):
         self.uiMUnidad = Ui_ModificarUnidad()
         self.uiMUnidad.setupUi(self)
         self.center()
+        self.setUnidad()
         
         self.connect(self.uiMUnidad.bRegresarUnidad, QtCore.SIGNAL("clicked()"), self.regresarUnidad)
-        #self.connect(self.uiMUnidad.bModificarUnidad, QtCore.SIGNAL("clicked()"), self.modificarConductor)
+        self.connect(self.uiMUnidad.bModificarUnidad, QtCore.SIGNAL("clicked()"), self.modificarUnidad)
 
     def setearBotones(self):
         iconReg = QtGui.QIcon()
@@ -36,3 +37,39 @@ class MyformModificarUnidad(QtGui.QMainWindow):
         cp = QtGui.QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+        
+    def setUnidad(self):
+        lista_Unidades = []
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+                
+        query = QtSql.QSqlQuery("call PRGetUnidad")
+        fieldNo_Uni = query.record().indexOf("IdUnidad")
+        fieldNo_Cap = query.record().indexOf("Capacidad")
+        
+        while query.next():
+            idU = query.value(fieldNo_Uni).toString()
+            capacidad = query.value(fieldNo_Cap).toString()
+            id_capacidad = idU + '-Capacidad:' + capacidad
+            lista_Unidades.append(id_capacidad)
+        
+        self.uiMUnidad.cboxIDUnidad.addItems(lista_Unidades)
+
+    def modificarUnidad(self):
+        QtGui.QMessageBox.information(None,'Modificar Unidad', 'Usted podra modificar cualquier dato de las Unidades')
+        idRecorrido = self.uiMUnidad.cboxIDUnidad.currentText()
+        lista = idRecorrido.split("-")
+        
+        if not QtSql.QSqlDatabase.database().isOpen():
+            if not QtSql.QSqlDatabase.database():
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
+        
+        model = QtSql.QSqlTableModel(self)
+        model.setQuery(QtSql.QSqlQuery("select Matricula, Capacidad, Anio_Fab,  Fecha_Adquisicion from Unidad Where IdUnidad="+lista[0]+";"))
+
+        self.uiMUnidad.tableViewMU.setModel(model)
+        self.uiMUnidad.tableViewMU.resizeColumnsToContents()
+        
+        
+        

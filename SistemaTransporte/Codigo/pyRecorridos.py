@@ -46,6 +46,7 @@ class MyformRecorridos(QtGui.QMainWindow):
         indiceEstLleg = self.uiR.comboBEstLlegada.currentIndex() +1
         horaS = self.uiR.timeEHoraS.time()
         horaLl = self.uiR.timeEHoraLl.time()
+        
         c = conductor.split('-')
         u = unidad.split('-')
         idCon = c[0]
