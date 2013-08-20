@@ -41,12 +41,9 @@ class MyformRecorridoFecha(QtGui.QMainWindow):
     def consultarFecha(self):        
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
-        else: 
-                print 'Bases de Datos Abierta'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         
         model = QtSql.QSqlTableModel(self)
-        print str(self.uiRF.dFechaInicial.DaySection)
         
         dia1 = self.uiRF.dFechaInicial.date().day()
         mes1 = self.uiRF.dFechaInicial.date().month()

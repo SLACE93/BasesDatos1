@@ -55,21 +55,9 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
     def consultarConductor(self):
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
-        else: 
-                print 'Bases de Datos Abierta'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         
         model = QtSql.QSqlTableModel(self)
-        
-        #dia1 = self.uiRCond.fechaInicialRC.date().day()
-        #mes1 = self.uiRCond.fechaInicialRC.date().month()
-        #ano1 = self.uiRCond.fechaInicialRC.date().year()
-        #fechaInicial = str(ano1)+"/"+str(mes1)+"/"+str(dia1)
-        
-        #dia2 = self.uiRCond.fechaFinalRC.date().day()
-        #mes2 = self.uiRCond.fechaFinalRC.date().month()
-        #ano2 = self.uiRCond.fechaFinalRC.date().year()
-        #fechaFinal = str(ano2)+"/"+str(mes2)+"/"+str(dia2)
         
         conductor = self.uiRCond.comboBIDConductorRC.currentText()
         c = conductor.split('-')
@@ -93,20 +81,17 @@ class MyformRecorridoConductor(QtGui.QMainWindow):
         lista_Conductores = []
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
                 
         query = QtSql.QSqlQuery("call PRGetConductor")
-        #fieldNo_Id = query.record().indexOf("IdConductor")
         fieldNo_Ced = query.record().indexOf("Cedula")
         fieldNo_Nom =query.record().indexOf("cNombre")
         
         while query.next():
-            #idC = query.value(fieldNo_Id).toString()
             cedula = query.value(fieldNo_Ced).toString()
             nombre = query.value(fieldNo_Nom).toString()
             ced_nombre = cedula + '-' + nombre
             lista_Conductores.append(ced_nombre)
-        print lista_Conductores
         self.uiRCond.comboBIDConductorRC.addItems(lista_Conductores)
     
     def center(self):

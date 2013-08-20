@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_Consultas(QtGui.QMainWindow):
     def setupUi(self, Consultas):
         Consultas.setObjectName(_fromUtf8("Consultas"))
-        Consultas.resize(640, 515)
+        Consultas.resize(640, 520)
         Consultas.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
         self.labelConsultas = QtGui.QLabel(Consultas)
         self.labelConsultas.setStyleSheet("background-image: url()")

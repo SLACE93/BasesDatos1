@@ -9,6 +9,8 @@ from VentanaPrincipal import Ui_Principal
 from pyRecorridos import MyformRecorridos
 from pyConductor import MyformConductor
 from pyUnidades import MyformUnidades
+from pyModificar import MyformModificar
+from pyEliminar import MyformEliminar
 from pyConsultas import MyformConsultas
 
 class pyVentanaP(QtGui.QMainWindow):
@@ -22,6 +24,8 @@ class pyVentanaP(QtGui.QMainWindow):
         self.connect(self.ui.brecorridos, QtCore.SIGNAL("clicked()"), self.entrarRecorridos)
         self.connect(self.ui.bconductores, QtCore.SIGNAL("clicked()"), self.entrarConductor)
         self.connect(self.ui.bunidades, QtCore.SIGNAL("clicked()"), self.entrarUnidades)
+        self.connect(self.ui.beliminar, QtCore.SIGNAL("clicked()"), self.entrarEliminar)
+        self.connect(self.ui.bmodificar, QtCore.SIGNAL("clicked()"), self.entrarModificar)
         self.connect(self.ui.bconsultas, QtCore.SIGNAL("clicked()"), self.entrarConsultas)
 
         
@@ -43,6 +47,19 @@ class pyVentanaP(QtGui.QMainWindow):
         self.unidades.regresarVentanaU(self)
         self.unidades.show()
         
+
+    def entrarEliminar(self):
+        self.hide()
+        self.eliminar = MyformEliminar()
+        self.eliminar.regresarVentanaEliminar(self)
+        self.eliminar.show()
+        
+    def entrarModificar(self):
+        self.hide()
+        self.modificar = MyformModificar()
+        self.modificar.regresarVentanaModificar(self)
+        self.modificar.show()
+        
     def entrarConsultas(self):
         self.hide()
         self.consultas = MyformConsultas()
@@ -52,9 +69,8 @@ class pyVentanaP(QtGui.QMainWindow):
     def IniciarBase(self):
         self.db = QtSql.QSqlDatabase.addDatabase("QMYSQL")
         self.db.setUserName("root");
-        #self.db.setPassword("Joselito91");
+        self.db.setPassword("Joselito91");
         self.db.setHostName("127.0.0.1");
-        #self.db.setDatabaseName("trans");
         self.db.setDatabaseName("SCTE")
         self.db.open()
     

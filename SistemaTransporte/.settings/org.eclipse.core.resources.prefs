@@ -1,6 +1,14 @@
 eclipse.preferences.version=1
 encoding//Codigo/Conductor.py=utf-8
 encoding//Codigo/Consultas.py=utf-8
+encoding//Codigo/Eliminar.py=utf-8
+encoding//Codigo/EliminarConductor.py=utf-8
+encoding//Codigo/EliminarRecorrido.py=utf-8
+encoding//Codigo/EliminarUnidad.py=utf-8
+encoding//Codigo/Modificar.py=utf-8
+encoding//Codigo/ModificarConductor.py=utf-8
+encoding//Codigo/ModificarRecorrido.py=utf-8
+encoding//Codigo/ModificarUnidad.py=utf-8
 encoding//Codigo/RecorridoConductor.py=utf-8
 encoding//Codigo/RecorridoFecha.py=utf-8
 encoding//Codigo/RecorridoHora.py=utf-8

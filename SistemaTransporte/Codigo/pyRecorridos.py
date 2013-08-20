@@ -51,12 +51,7 @@ class MyformRecorridos(QtGui.QMainWindow):
         idCon = c[0]
         idUni = u[0]
         aux = u[1].split(':')
-        capacidad = aux[1]
-        
-        print idCon
-        print idUni
-        print capacidad
-        
+        capacidad = aux[1]        
 
         if idCon != '' and idUni != '' and numPas != '':    
             if self.toInt(idCon) == None:
@@ -102,7 +97,7 @@ class MyformRecorridos(QtGui.QMainWindow):
         
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         
         query = QtSql.QSqlQuery()
         query.prepare("call PRInsertRecorrido(?,?,?,?,?,?,?,?)")
@@ -133,7 +128,7 @@ class MyformRecorridos(QtGui.QMainWindow):
         lista_Unidades = [] 
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
                 
         query = QtSql.QSqlQuery("call PRGetConductor")
         fieldNo_Id = query.record().indexOf("IdConductor")
@@ -146,7 +141,6 @@ class MyformRecorridos(QtGui.QMainWindow):
             nombre = query.value(fieldNo_Nom).toString()
             ced_nombre = idC + '-' + cedula + '-' + nombre
             lista_Conductores.append(ced_nombre)
-        print lista_Conductores
         self.uiR.comboBIDConductor.addItems(lista_Conductores)
         
         query = QtSql.QSqlQuery("call PRGetUnidad")

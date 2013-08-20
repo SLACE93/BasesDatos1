@@ -20,22 +20,17 @@ class Ui_RecorridoConductor(object):
         RecorridoConductor.setObjectName(_fromUtf8("RecorridoConductor"))
         RecorridoConductor.resize(640, 520)
         RecorridoConductor.setStyleSheet(("background-image: url(imagenes/principal.jpg)"))
-        '''self.lfechaFinalRC = QtGui.QLabel(RecorridoConductor)
-        self.lfechaFinalRC.setStyleSheet("background-image: url()")
-        self.lfechaFinalRC.setGeometry(QtCore.QRect(190, 120, 131, 20))'''
+
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        '''self.lfechaFinalRC.setFont(font)
-        self.lfechaFinalRC.setObjectName(_fromUtf8("lfechaFinalRC"))'''
+
         self.comboBIDConductorRC = ExtendedComboBox(RecorridoConductor)
         self.comboBIDConductorRC.setGeometry(QtCore.QRect(280, 85, 240, 27))
         self.comboBIDConductorRC.setObjectName(_fromUtf8("lineIDConductorRC"))
-        '''self.lineIDConductorRC = QtGui.QLineEdit(RecorridoConductor)
-        self.lineIDConductorRC.setGeometry(QtCore.QRect(320, 160, 151, 27))
-        self.lineIDConductorRC.setObjectName(_fromUtf8("lineIDConductorRC"))'''
+
         self.lIDConductorRC = QtGui.QLabel(RecorridoConductor)
         self.lIDConductorRC.setStyleSheet("background-image: url()")
         self.lIDConductorRC.setGeometry(QtCore.QRect(100, 85, 151, 20))
@@ -46,23 +41,13 @@ class Ui_RecorridoConductor(object):
         font.setWeight(75)
         self.lIDConductorRC.setFont(font)
         self.lIDConductorRC.setObjectName(_fromUtf8("lIDConductorRC"))
-        '''self.fechaInicialRC = QtGui.QDateEdit(RecorridoConductor)
-        self.fechaInicialRC.setGeometry(QtCore.QRect(320, 80, 151, 27))
-        self.fechaInicialRC.setObjectName(_fromUtf8("fechaInicialRC"))
-        self.lfechaInicialRC = QtGui.QLabel(RecorridoConductor)
-        self.lfechaInicialRC.setStyleSheet("background-image: url()")
-        self.lfechaInicialRC.setGeometry(QtCore.QRect(170, 80, 141, 20))'''
+
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        '''self.lfechaInicialRC.setFont(font)
-        self.lfechaInicialRC.setObjectName(_fromUtf8("lfechaInicialRC"))
-        self.fechaFinalRC = QtGui.QDateEdit(RecorridoConductor)
-        self.fechaFinalRC.setDisplayFormat("dd/MM/yyyy")
-        self.fechaFinalRC.setGeometry(QtCore.QRect(320, 120, 151, 27))
-        self.fechaFinalRC.setObjectName(_fromUtf8("fechaFinalRC"))'''
+
         self.TitleRecorridoConductor = QtGui.QLabel(RecorridoConductor)
         self.TitleRecorridoConductor.setStyleSheet("background-image: url()")
         self.TitleRecorridoConductor.setGeometry(QtCore.QRect(110, 30, 411, 21))
@@ -89,7 +74,5 @@ class Ui_RecorridoConductor(object):
 
     def retranslateUi(self, RecorridoConductor):
         RecorridoConductor.setWindowTitle(_translate("RecorridoConductor", "Recorrido Conductor", None))
-        #self.lfechaFinalRC.setText(_translate("RecorridoConductor", "FECHA FINAL", None))
         self.lIDConductorRC.setText(_translate("RecorridoConductor", "ID CONDUCTOR", None))
-        #self.lfechaInicialRC.setText(_translate("RecorridoConductor", " FECHA INICIAL", None))
         self.TitleRecorridoConductor.setText(_translate("RecorridoConductor", "RECORRIDOS POR CONDUCTOR", None))

@@ -45,7 +45,6 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
             if self.toInt(self.idUnidad) == None:
                 QtGui.QMessageBox.information(None, 'Ingreso erroneo','Solo se admite enteros en el campo de ID Unidad')
             else: 
-                print 'ingreso a la base'
                 self.consultarUnidad()
         else:
             QtGui.QMessageBox.information(None, 'Campos vacios', 'Todos los campos deben contener informacion')
@@ -54,14 +53,11 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
     def consultarUnidad(self):
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
-        else: 
-                print 'Bases de Datos Abierta'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         
         model = QtSql.QSqlTableModel(self)
         
         unidad = self.uiRU.comboBIDUnidadRU.currentText()
-        print unidad
         model.setQuery(QtSql.QSqlQuery("CALL PRQueryRecorridoUnidad('"+unidad+"')"))
 
         self.uiRU.tableViewRU.setModel(model)
@@ -79,16 +75,13 @@ class MyformRecorridoUnidad(QtGui.QMainWindow):
         lista_Unidades = [] 
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
                 
 
         query = QtSql.QSqlQuery("call PRGetUnidad")
         fieldNo_Uni = query.record().indexOf("IdUnidad")
-        #fieldNo_Cap = query.record().indexOf("Capacidad")
         while query.next():
             idUni = query.value(fieldNo_Uni).toString()
-            #capacidad = query.value(fieldNo_Cap).toString()
-            #id_capacidad = idUni + '-Capacidad: ' + capacidad
             lista_Unidades.append(idUni)
             
         self.uiRU.comboBIDUnidadRU.addItems(lista_Unidades)

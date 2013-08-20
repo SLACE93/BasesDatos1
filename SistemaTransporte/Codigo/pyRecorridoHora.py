@@ -43,12 +43,10 @@ class MyformRecorridoHoras(QtGui.QMainWindow):
     def consultar(self, horaI, horaF):
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         model = QtSql.QSqlTableModel(self)
         horaInicial = horaI
         horaFinal = horaF
-        print horaInicial
-        print horaFinal
         
         model.setQuery(QtSql.QSqlQuery("call PRQueryRecorridoHora('"+horaInicial+"','"+horaFinal+"')"))
         model.select();

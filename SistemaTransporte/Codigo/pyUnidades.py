@@ -72,7 +72,7 @@ class MyformUnidades(QtGui.QMainWindow):
   
         if not QtSql.QSqlDatabase.database().isOpen():
             if not QtSql.QSqlDatabase.database():
-                print 'No se pudo abrir la BASES DE DATOS'
+                QtGui.QMessageBox.information(None,'ERROR', 'No se pudo abrir la BASES DE DATOS')
         
         query = QtSql.QSqlQuery()
         query.prepare("call PRInsertUnidad(?,?,?,?)")

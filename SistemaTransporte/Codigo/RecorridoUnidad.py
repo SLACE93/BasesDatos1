@@ -34,13 +34,7 @@ class Ui_RecorridoUnidad(object):
         self.comboBIDUnidadRU = ExtendedComboBox(RecorridoUnidad)
         self.comboBIDUnidadRU.setGeometry(QtCore.QRect(290, 70, 211, 27))
         self.comboBIDUnidadRU.setObjectName(_fromUtf8("comboBIDUnidadRU"))
-        '''
-        self.lineIDConductorRU = QtGui.QLineEdit(RecorridoUnidad)
-        self.lineIDConductorRU.setGeometry(QtCore.QRect(290, 160, 211, 27))
-        self.lineIDConductorRU.setObjectName(_fromUtf8("lineIDConductorRU"))'''
-        '''self.dfechaFinalRU = QtGui.QDateEdit(RecorridoUnidad)
-        self.dfechaFinalRU.setGeometry(QtCore.QRect(320, 120, 161, 27))
-        self.dfechaFinalRU.setObjectName(_fromUtf8("dfechaFinalRU"))'''
+
         self.lIDUnidad = QtGui.QLabel(RecorridoUnidad)
         self.lIDUnidad.setStyleSheet("background-image: url()")
         self.lIDUnidad.setGeometry(QtCore.QRect(170, 70, 111, 20))
@@ -50,30 +44,21 @@ class Ui_RecorridoUnidad(object):
         font.setWeight(75)
         self.lIDUnidad.setFont(font)
         self.lIDUnidad.setObjectName(_fromUtf8("lIDUnidad"))
-        '''self.lFechaF = QtGui.QLabel(RecorridoUnidad)
-        self.lFechaF.setStyleSheet("background-image: url()")
-        self.lFechaF.setGeometry(QtCore.QRect(190, 120, 131, 20))'''
+
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        ''''self.lFechaF.setFont(font)
-        self.lFechaF.setObjectName(_fromUtf8("lFechaF"))'''
+
         self.bConsultarRUnidad = QtGui.QPushButton(RecorridoUnidad)
         self.bConsultarRUnidad.setGeometry(QtCore.QRect(330, 440, 240, 50))
         self.bConsultarRUnidad.setObjectName(_fromUtf8("bConsultarRUnidad"))
-        '''self.dfechaInicialRU = QtGui.QDateEdit(RecorridoUnidad)
-        self.dfechaInicialRU.setGeometry(QtCore.QRect(320, 80, 161, 27))
-        self.dfechaInicialRU.setObjectName(_fromUtf8("dfechaInicialRU"))
-        self.lFechaI = QtGui.QLabel(RecorridoUnidad)
-        self.lFechaI.setStyleSheet("background-image: url()")
-        self.lFechaI.setGeometry(QtCore.QRect(170, 80, 151, 20))'''
+
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        '''self.lFechaI.setFont(font)
-        self.lFechaI.setObjectName(_fromUtf8("lFechaI"))'''
+
         self.bRegresarRUnidad = QtGui.QPushButton(RecorridoUnidad)
         self.bRegresarRUnidad.setGeometry(QtCore.QRect(50, 440, 240, 50))
         self.bRegresarRUnidad.setObjectName(_fromUtf8("bRegresarRUnidad"))
@@ -89,5 +74,3 @@ class Ui_RecorridoUnidad(object):
         RecorridoUnidad.setWindowTitle(_translate("RecorridoUnidad", "Recorrido Unidad", None))
         self.TitleRecorridoUnidad.setText(_translate("RecorridoUnidad", "RECORRIDOS POR UNIDAD", None))
         self.lIDUnidad.setText(_translate("RecorridoUnidad", "ID UNIDAD", None))
-        '''self.lFechaF.setText(_translate("RecorridoUnidad", "FECHA FINAL", None))
-        self.lFechaI.setText(_translate("RecorridoUnidad", " FECHA INICIAL", None))'''
